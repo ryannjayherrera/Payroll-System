@@ -17,6 +17,7 @@
                 <div class="nav-item">
                     <a href="index.php?page=dashboard" class="nav-item nav-dashboard"><i class="ik ik-bar-chart-2"></i>Dashboard</a>
                 </div>
+                
                 <div class="nav-lavel">Employee Management</div>
                 <div class="nav-item">
                     <a href="index.php?page=employee" class="nav-item nav-employee"><i class="ik ik-bar-chart-2"></i>Employee</a>
