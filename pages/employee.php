@@ -70,10 +70,11 @@
                 <div class="sidebar-content">
                     <div class="nav-container">
                         <nav id="main-menu-navigation" class="navigation-main">
-                            <div class="nav-lavel">Employee Management</div>
+                           
                             <div class="nav-item">
                                 <a href="../index.html"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                             </div>
+                            <div class="nav-lavel">Employee Management</div>
                             <div class="nav-item active">
                                 <a href="employee.php"><i class="ik ik-users"></i><span>Employee</span></a>
                             </div>
@@ -92,7 +93,7 @@
                                     <!-- NAVIGATION MENU ^^^^ -->
                                     <div class="d-inline">
                                         <h5>Emloyee</h5>
-                                        <span>------</span>
+                                        <span>Make Employee Management Extremely Simple</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,10 +119,10 @@
                                     <h3>Employee List</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="dt-responsive">
+                                    <div class="dt-responsive" >
                                         <table id="data_table" class="table table-hover table-striped table-bordered nowrap">
                                             <thead>
-                                                <tr>
+                                                <tr style="text-align: center;">
                                                     <th>Employee ID</th>
                                                     <th>Name</th>
                                                     <th>Position</th>
@@ -142,10 +143,10 @@
                                                         <td><?php echo $row['Fld_Position']; ?></td>
                                                         <td><?php echo $row['Fld_Status']; ?></td>
                                                         <td>
-                                                            <div class="table-actions">
-                                                                <a href="#"><i class="ik ik-eye"></i></a>
-                                                                <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>"><i class="ik ik-edit-2"></i></a>
-                                                                <a href="delete.php?id=<?php echo $row['Fld_RecID']; ?>"><i class="ik ik-trash-2"></i></a>
+                                                            <div class="table-actions" style="text-align: center;">
+                                                                <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
+                                                                <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
+                                                                <a href="delete.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: red;"><i class="ik ik-trash-2"></i></a>
                                                             </div>
                                                         </td>
 
