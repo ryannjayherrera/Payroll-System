@@ -14,20 +14,14 @@
     <div class="sidebar-content">
         <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">
-
                 <div class="nav-item">
-                    <a href="index.php?page=dashboard" class="nav-item nav-dashboard"><span class='icon-field'><i class="ik ik-bar-chart-2"></i></span>Dashboard</a>
+                    <a href="index.php?page=dashboard" class="nav-item nav-dashboard"><i class="ik ik-bar-chart-2"></i>Dashboard</a>
                 </div>
                 <div class="nav-lavel">Employee Management</div>
                 <div class="nav-item">
-                    <a href="index.php?page=employee" class="nav-item nav-employee"><span class='icon-field'><i class="ik ik-bar-chart-2"></i></span>Employee</a>
+                    <a href="index.php?page=employee" class="nav-item nav-employee"><i class="ik ik-bar-chart-2"></i>Employee</a>
                 </div>
             </nav>
-
-
-            <script>
-                $('.nav-<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active')
-            </script>
 
         </div>
     </div>
