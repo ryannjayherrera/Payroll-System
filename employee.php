@@ -71,7 +71,7 @@
                   	
                     <div class="card-body">
 
-                        <table id="dt-responsive" class="table table-hover table-striped table-bordered nowrap">
+                        <table id="dt-responsive data_table" class="table table-hover table-striped table-bordered nowrap">
                             <thead>
                                 <tr>
 
