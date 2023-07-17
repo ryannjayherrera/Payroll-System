@@ -41,7 +41,7 @@
                 <!-- Put content here -->
                 <main id="view-panel">
 
-                   <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?> 
+                   <?php $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard'; ?> 
                     <?php include $page . '.php' ?>
 
                 </main>

@@ -65,7 +65,10 @@
                 <div class="card">
                     <div class="card-header d-block">
                         <h3>Employee List</h3>
+                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="fa fa-plus"></span> Add Employee</button>
+				
                     </div>
+                  	
                     <div class="card-body">
 
                         <table id="dt-responsive" class="table table-hover table-striped table-bordered nowrap">
@@ -109,12 +112,26 @@
             </div>
         </div>
 
-
-
-
     </div>
-
-
+<!-- Add Employee -->
+    <div class="modal fade" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="new_emp_btn">Update Employee List</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <!-- Put employee record here -->
+                                    ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
     <!--  <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
