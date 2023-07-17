@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="../dist/css/theme.min.css">
     <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
     <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -92,7 +94,7 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $row['Fld_EmployeeID']; ?> </td>
-                                            <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?> <?php echo $row['Fld_LastName']; ?></td>
+                                            <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?>. <?php echo $row['Fld_LastName']; ?></td>
                                             <td><?php echo $row['Fld_Position']; ?></td>
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
@@ -166,31 +168,64 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input id="dropper-animation" class="form-control" type="text" id="address" placeholder="Address" />
+                                    <input class="form-control" type="text" id="address" placeholder="Address" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="ContactNumber">Contact Number</label>
+                                    <input class="form-control" type="text" id="ContactNumber" placeholder="Contact Number" />
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword4">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="datehired">Date Hired</label>
+                                    <input type="date" class="form-control" id="datehired" placeholder="Date Hired">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Position">Position</label>
+                                    <select class="form-control select2" id="Position">
+                                        <?php
+                                        include 'db-config.php';
+                                        $users = $conn->query("SELECT * FROM tbl_position");
+                                        $i = 1;
+                                        while ($row = $users->fetch_assoc()) :
+                                        ?>
+                                            <option><?php echo $row['Fld_PositionName']; ?></option>
+                                        <?php endwhile; ?>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="form-control select2" id="status">
+                                        <?php
+                                        include 'db-config.php';
+                                        $users = $conn->query("SELECT * FROM tbl_emp_status");
+                                        $i = 1;
+                                        while ($row = $users->fetch_assoc()) :
+                                        ?>
+                                            <option><?php echo $row['Fld_Status']; ?></option>
+                                        <?php endwhile; ?>
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label>File upload</label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleTextarea1">Textarea</label>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            <label for="jobdesc">Job Description</label>
+                            <textarea class="form-control html-editor" rows="10" id="jobdesc"></textarea>
                         </div>
 
                     </form>
@@ -237,6 +272,8 @@
     <script src="../dist/js/theme.min.js"></script>
     <script src="../plugins/datedropper/datedropper.min.js"></script>
     <script src="../js/form-picker.js"></script>
+    <script src="../plugins/select2/dist/js/select2.min.js"></script>
+    <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
