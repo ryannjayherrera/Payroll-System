@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="../plugins/weather-icons/css/weather-icons.min.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -152,8 +154,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail3">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                    <label for="Birthday">Birth Date</label>
+                                    <input id="dropper-default" class="form-control" type="text" id="Birthday" placeholder="Select your animation" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -228,6 +230,8 @@
     <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../dist/js/theme.min.js"></script>
+    <script src="../plugins/datedropper/datedropper.min.js"></script>
+    <script src="../js/form-picker.js"></script>  
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function(b, o, i, l, e, r) {

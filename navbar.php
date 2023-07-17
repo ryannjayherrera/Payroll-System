@@ -20,7 +20,7 @@
                 
                 <div class="nav-lavel">Employee Management</div>
                 <div class="nav-item">
-                    <a href="index.php?page=employee" class="nav-item nav-employee"><i class="ik ik-bar-chart-2"></i>Employee</a>
+                    <a href="index.php?page=employee" class="nav-item nav-employee"><i class="ik ik ik-users"></i>Employee</a>
                 </div>
             </nav>
 
