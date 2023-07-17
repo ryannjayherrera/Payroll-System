@@ -72,43 +72,42 @@
                     </div>
 
                     <div class="card-body">
-
-                        <table id="dt-responsive data_table" class="table table-hover table-striped table-bordered nowrap">
-                            <thead>
-                                <tr>
-
-                                    <th>Employee ID</th>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Status</th>
-                                    <th class="nosort"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                include 'db-config.php';
-                                $users = $conn->query("SELECT * FROM tbl_employee");
-                                $i = 1;
-                                while ($row = $users->fetch_assoc()) :
-                                ?>
+                        <div class="#">
+                            <table id="dt-responsive" class="table table-hover table-bordered nowrap data_table"> <!-- table-hover table-striped table-bordered nowrap -->
+                                <thead>
                                     <tr>
-                                        <td><?php echo $row['Fld_EmployeeID']; ?> </td>
-                                        <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?> <?php echo $row['Fld_LastName']; ?></td>
-                                        <td><?php echo $row['Fld_Position']; ?></td>
-                                        <td><?php echo $row['Fld_Status']; ?></td>
-                                        <td>
-                                            <div class="table-actions" style="text-align: center;">
-                                                <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
-                                                <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                <a href="delete.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: red;"><i class="ik ik-trash-2"></i></a>
-                                            </div>
-                                        </td>
-
+                                        <th>Employee ID</th>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Status</th>
+                                        <th class="nosort">&nbsp;</th>
                                     </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    include 'db-config.php';
+                                    $users = $conn->query("SELECT * FROM tbl_employee");
+                                    $i = 1;
+                                    while ($row = $users->fetch_assoc()) :
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $row['Fld_EmployeeID']; ?> </td>
+                                            <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?> <?php echo $row['Fld_LastName']; ?></td>
+                                            <td><?php echo $row['Fld_Position']; ?></td>
+                                            <td><?php echo $row['Fld_Status']; ?></td>
+                                            <td>
+                                                <div class="table-actions" style="text-align: center;">
+                                                    <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
+                                                    <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
+                                                    <a href="delete.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: red;"><i class="ik ik-trash-2"></i></a>
+                                                </div>
+                                            </td>
 
+                                        </tr>
+                                    <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,19 +151,25 @@
 
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Birthday">Birth Date</label>
-                                    <input id="dropper-default" class="form-control" type="text" id="Birthday" placeholder="Select your animation" />
+                                    <input id="dropper-animation" class="form-control" type="date" id="Birthday" placeholder="Birthday" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="exampleSelectGender">Gender</label>
-                                    <select class="form-control" id="exampleSelectGender">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control" id="gender">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input id="dropper-animation" class="form-control" type="text" id="address" placeholder="Address" />
                                 </div>
                             </div>
                         </div>
@@ -231,7 +236,23 @@
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../dist/js/theme.min.js"></script>
     <script src="../plugins/datedropper/datedropper.min.js"></script>
-    <script src="../js/form-picker.js"></script>  
+    <script src="../js/form-picker.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#new_emp_btn').click(function() {
+                uni_modal("New Employee", "manage-employee.php")
+            })
+
+
+        });
+    </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function(b, o, i, l, e, r) {

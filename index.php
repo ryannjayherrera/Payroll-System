@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ThemeKit - Admin Template</title>
+   <!--  <title>ePMS</title> -->
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="dist/css/theme.min.css">
+    <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
     <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -85,6 +86,7 @@
     <script src="js/widgets.js"></script>
     <script src="js/charts.js"></script>
     <script src="dist/js/theme.min.js"></script>
+    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function(b, o, i, l, e, r) {
