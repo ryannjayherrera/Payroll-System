@@ -24,6 +24,7 @@ $page_name = basename($_SERVER["SCRIPT_FILENAME"], '.php');
                 <div class="nav-lavel">Employee Management</div>
                 <div class="nav-item">
                     <a href="index.php?page=employee" class="nav-item nav-employee "><span class='icon-field'><i class="ik ik-users"></i></span>Employee</a>
+                    <a href="index.php?page=users" class="nav-item nav-users "><span class='icon-field'><i class="ik ik-users"></i></span>Users</a>
                 </div>
             </nav>
         </div>
