@@ -107,7 +107,7 @@ include 'db-config.php';
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
-                                                    <!--   <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
+                                                    <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
                                                     <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title="Change Employee Status"></i> </a>
                                               
@@ -298,7 +298,7 @@ include 'db-config.php';
 
             </div>
         </div>
-    </div> -->
+    </div> 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -318,7 +318,7 @@ include 'db-config.php';
         $(document).ready(function() {
             $('#table').DataTable();
         });
-    </script> -->
+    </script>
 
    
     </script>
