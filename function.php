@@ -22,7 +22,7 @@ if(count($_POST)>0){
  
         if (mysqli_query($conn, $sql)) {
            
-    //echo "New record created successfully !";
+            $_SESSION['success'] = 'Employee updated successfully';
 	    } else {
 		    echo "Error: " . $sql . "" . mysqli_error($conn);
 	        }      
@@ -34,15 +34,24 @@ if(count($_POST)>0){
 	if($_POST['type']==2){
 		$Fld_RecID = $_POST['Fld_RecID'];
 		$Fld_Status = $_POST['Fld_Status'];
-		$sql = "UPDATE `tbl_employee` SET `Fld_Status`='$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
+		$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
 		if (mysqli_query($conn, $sql)) {
-			//echo json_encode(array("statusCode"=>200));
+			$_SESSION['success'] = 'Employee updated successfully';
 		} 
 		else {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            $_SESSION['error'] = 'Select employee to edit first'; 
 		}
 		mysqli_close($conn);
+        echo '<script>showAlert();</script>';
 	}
 }
 
 ?>
+
+<script>
+        function showAlert() {
+            var inputValue = document.getElementById("Fld_RecID").value;
+            alert("The value entered is: " + inputValue);
+        }
+    </script>
