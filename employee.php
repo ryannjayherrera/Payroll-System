@@ -126,7 +126,7 @@ require_once 'function.php';
                                                     <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
                                                     <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
-                                                    <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['Fld_RecID']; ?>"><i class="fa fa-edit"></i> Edit</button>
+                                                    <button class="btn btn-success btn-sm updatestatus btn-flat" data-id="<?php echo $row['Fld_RecID']; ?>"><i class="fa fa-edit"></i> Edit</button>
                             
                                                 </div>
                                             </td>
@@ -332,7 +332,7 @@ require_once 'function.php';
     </script> -->
     <script>
         $(function() {
-            $('.edit').click(function(e) {
+            $('.statusEmployeeModal').click(function(e) {
                 e.preventDefault();
                 $('#statusEmployeeModal').modal('show');
                 var id = $(this).data('Fld_RecID');
