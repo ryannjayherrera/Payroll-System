@@ -2,62 +2,48 @@
 include 'db-config.php';
 
 
+if(count($_POST)>0){
+	if($_POST['type']==1){	 
+	 $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
+	 $Fld_FirstName = $_POST['Fld_FirstName'];
+	 $Fld_MiddleName = $_POST['Fld_MiddleName'];
+	 $Fld_LastName = $_POST['Fld_LastName'];
+     $Fld_Gender = $_POST['Fld_Gender'];
+	 $Fld_Birthday = $_POST['Fld_Birthday'];
+	 $Fld_Address = $_POST['Fld_Address'];
+     $Fld_ContactNumber = $_POST['Fld_ContactNumber'];
+	 $Fld_DateHired = $_POST['Fld_DateHired'];
+	 $Fld_Position = $_POST['Fld_Position'];
+	 $Fld_JobDesc = $_POST['Fld_JobDesc'];
+     $Fld_Status = $_POST['Fld_Status'];
 
-// Create new employee
-function createEmployee($Fld_EmployeeID, $Fld_FirstName, $Fld_MiddleName, $Fld_LastName, $Fld_Gender, $Fld_Age, $Fld_Birthday, $Fld_Address, $Fld_ContactNumber, $Fld_DateHired, $Fld_Position, $Fld_JobDesc, $Fld_Status) {
-   // $conn = connectToDB();
-
-    $sql = "INSERT INTO tbl_employee (Fld_EmployeeID, Fld_FirstName, Fld_MiddleName, Fld_LastName, Fld_Gender, Fld_Age, Fld_Birthday, Fld_Address, Fld_ContactNumber, Fld_DateHired, Fld_Position, Fld_JobDesc, Fld_Status) 
-    VALUES ('$Fld_EmployeeID', '$Fld_FirstName', '$Fld_MiddleName', '$Fld_LastName', '$Fld_Gender', '$Fld_Age', '$Fld_Birthday', '$Fld_Address', '$Fld_ContactNumber','$Fld_DateHired', '$Fld_Position', '$Fld_JobDesc', '$Fld_Status')";
-
-    if ($conn->query($sql) === TRUE) {
-        return true;
-    } else {
-        return false;
+     $sql = "INSERT INTO tbl_employee (Fld_EmployeeID, Fld_FirstName, Fld_MiddleName, Fld_LastName, Fld_Gender, Fld_Birthday, Fld_Address, Fld_ContactNumber, Fld_DateHired, Fld_Position, Fld_JobDesc, Fld_Status) 
+     VALUES ('$Fld_EmployeeID', '$Fld_FirstName', '$Fld_MiddleName', '$Fld_LastName', '$Fld_Gender', '$Fld_Birthday', '$Fld_Address', '$Fld_ContactNumber','$Fld_DateHired', '$Fld_Position', '$Fld_JobDesc', '$Fld_Status')";
+ 
+        if (mysqli_query($conn, $sql)) {
+            echo json_encode(array("statusCode"=>200));
+    //echo "New record created successfully !";
+	    } else {
+		    echo "Error: " . $sql . "" . mysqli_error($conn);
+	        }      
+	         mysqli_close($conn);
     }
 }
 
-// Read all employees
-function readEmployees() {
-    $conn = connectToDB();
 
-    $sql = "SELECT * FROM tbl_employee";
-    $result = $conn->query($sql);
-
-    $employees = [];
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $employees[] = $row;
-        }
-    }
-
-    return $employees;
+if(count($_POST)>0){
+	if($_POST['type']==2){
+		$Fld_RecID = $_POST['Fld_RecID'];
+		$Fld_Status = $_POST['Fld_Status'];
+		$sql = "UPDATE `tbl_employee` SET `Fld_Status`='$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
+		if (mysqli_query($conn, $sql)) {
+			echo json_encode(array("statusCode"=>200));
+		} 
+		else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
+		mysqli_close($conn);
+	}
 }
 
-// Update an employee
-function updateEmployee($id, $fname, $mname, $lname) {
-    $conn = connectToDB();
-
-    $sql = "UPDATE tbl_employee SET Fld_Fname = '$fname', Fld_Mname = '$mname', Fld_Lname = '$lname' WHERE Fld_RecID = '$id'";
-
-    if ($conn->query($sql) === TRUE) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Delete an employee
-function deleteEmployee($id) {
-    $conn = connectToDB();
-
-    $sql = "DELETE FROM tbl_employee WHERE Fld_RecID = '$id'";
-
-    if ($conn->query($sql) === TRUE) {
-        return true;
-    } else {
-        return false;
-    }
-}
 ?>

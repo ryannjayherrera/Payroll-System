@@ -2,7 +2,7 @@
 require_once 'function.php';
 
 // Save data when the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
     $Fld_FirstName = $_POST['Fld_FirstName'];
     $Fld_MiddleName = $_POST['Fld_MiddleName'];
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error saving data.";
     }
-}
+} */
 ?>
 
 <!doctype html>
@@ -57,14 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
- 
+
     <div class="container-fluid">
         <div class="page-header">
             <div class="row align-items-end">
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <i class="ik ik-users bg-blue"></i>
-                        <!-- NAVIGATION MENU ^^^^ -->
                         <div class="d-inline">
                             <h5>Emloyee</h5>
                             <span>Make Employee Management Extremely Simple</span>
@@ -91,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card">
                     <div class="card-header d-block">
                         <h3>Employee List</h3>
-                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="fa fa-plus"></span> Add Employee</button>
+                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
 
                     </div>
 
@@ -123,7 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <div class="table-actions" style="text-align: center;">
                                                     <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="delete.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: red;"><i class="ik ik-trash-2"></i></a>
+                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title="Change Employee Status"></i> </a>
+                                              
                                                 </div>
                                             </td>
 
@@ -149,26 +149,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="modal-body">
                     <!-- Put employee record here -->
 
-
-
                     <form class="forms-sample" method="POST">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control" id="Fld_FirstName" placeholder="First Name">
+                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" id="Fld_MiddleName" placeholder="Middle Name">
+                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control" id="Fld_LastName" placeholder="Last Name">
+                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -178,13 +176,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" id="Fld_Birthday" placeholder="Birthday" />
+                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Gender">Gender</label>
-                                    <select class="form-control" id="Fld_Gender">
+                                    <select class="form-control" name="Fld_Gender">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
@@ -193,34 +191,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Fld_Address">Address</label>
-                                    <input class="form-control" type="text" id="Fld_Address" placeholder="Address" />
+                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" id="Fld_ContactNumber" placeholder="Contact Number" />
+                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                        <div class="col-md-2">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control" id="Fld_EmployeeID" placeholder="Employee ID">
+                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" id="Fld_DateHired" placeholder="Date Hired">
+                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Position">Position</label>
-                                    <select class="form-control select2" id="Fld_Position">
+                                    <select class="form-control select2" name="Fld_Position">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_position");
@@ -236,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Status">Status</label>
-                                    <select class="form-control select2" id="Fld_Status">
+                                    <select class="form-control select2" name="Fld_Status">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
@@ -253,41 +251,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="form-group">
                             <label for="jobdesc">Job Description</label>
-                            <textarea class="form-control html-editor" rows="10" id="jobdesc"></textarea>
+                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"></textarea>
                         </div>
-
-                    </form>
 
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" value="1" name="type">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary" name='save'>Save changes</button>
                 </div>
+
             </div>
+            </form>
         </div>
     </div>
 
 
-    <!--  <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="quick-search">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 ml-auto mr-auto">
-                                <div class="input-wrap">
-                                    <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
-                                    <i class="ik ik-search"></i>
+    <!-- Change Status Modal HTML -->
+    <div id="statusEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="update_form" method="POST">
+					<div class="modal-header">						
+						<h4 class="modal-title">Update Employee Status</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" id="id_u" name="Fld_RecID" class="form-control" required>					
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Fld_Status">Employee Status</label>
+                                    <select class="form-control" name="Fld_Status">
+                                        <?php
+                                        include 'db-config.php';
+                                        $users = $conn->query("SELECT * FROM tbl_emp_status");
+                                        $i = 1;
+                                        while ($row = $users->fetch_assoc()) :
+                                        ?>
+                                            <option><?php echo $row['Fld_Status']; ?></option>
+                                        <?php endwhile; ?>
+
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div> -->
+									
+					</div>
+					<div class="modal-footer">
+					<input type="hidden" value="2" name="type">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<button type="button" class="btn btn-info" id="update">Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -308,15 +325,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $('#table').DataTable();
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
 
-            $('#new_emp_btn').click(function() {
-                uni_modal("New Employee", "manage-employee.php")
-            })
-
-
-        });
+    <script>
+        function showAlert() {
+            var inputValue = document.getElementById("Fld_FirstName").value;
+            alert("The value entered is: " + inputValue);
+        }
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
