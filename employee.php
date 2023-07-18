@@ -144,19 +144,19 @@ include 'db-config.php';
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name">
+                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name" require>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name">
+                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name" require>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name">
+                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name" require>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" />
+                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" require>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -181,13 +181,13 @@ include 'db-config.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Fld_Address">Address</label>
-                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" />
+                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" require>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" />
+                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" require>
                                 </div>
                             </div>
                         </div>
@@ -196,13 +196,13 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID">
+                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID" require>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired">
+                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired" require>
                                 </div>
                             </div>
                             <div class="col-md-2">
