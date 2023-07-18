@@ -42,7 +42,7 @@ require_once 'function.php';
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
-    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
     <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
@@ -52,8 +52,8 @@ require_once 'function.php';
     <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
     <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
-    <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css"> -->
+    <!-- <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script> -->
 </head>
 
 <body>
@@ -90,6 +90,7 @@ require_once 'function.php';
                 <div class="card">
                     <div class="card-header d-block">
                         <h3>User List</h3>
+                        
                         <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_user_btn"><span class="ik ik-user-plus"></span> Add User</button>
 
                     </div>
