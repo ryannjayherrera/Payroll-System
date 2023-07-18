@@ -77,15 +77,9 @@ if(count($_POST)>0){
             $_SESSION['error'] = 'Select employee to edit first'; 
 		}
 		mysqli_close($conn);
-        echo '<script>showAlert();</script>';
+     
 	}
 }
 
 ?>
 
-<script>
-        function showAlert() {
-            var inputValue = document.getElementById("Fld_RecID").value;
-            alert("The value entered is: " + inputValue);
-        }
-    </script>
