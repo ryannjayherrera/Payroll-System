@@ -1,32 +1,3 @@
-<?php
-require_once 'function.php';
-
-// Save data when the form is submitted
-/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
-    $Fld_FirstName = $_POST['Fld_FirstName'];
-    $Fld_MiddleName = $_POST['Fld_MiddleName'];
-    $Fld_LastName = $_POST['Fld_LastName'];
-    $Fld_Gender = $_POST['Fld_Gender'];
-    $Fld_Age = $_POST['Fld_Age'];
-    $Fld_DateHired = $_POST['Fld_DateHired'];
-    $Fld_Birthday = $_POST['Fld_Birthday'];
-    $Fld_Address = $_POST['Fld_Address'];
-    $Fld_ContactNumber = $_POST['Fld_ContactNumber'];
-    $Fld_Position = $_POST['Fld_Position'];
-    $Fld_JobDesc = $_POST['Fld_JobDesc'];
-    $Fld_Status = $_POST['Fld_Status'];
-
-    $success = createEmployee($Fld_EmployeeID, $Fld_FirstName, $Fld_MiddleName, $Fld_LastName, $Fld_Gender, $Fld_Age, $Fld_Birthday, $Fld_Address, $Fld_ContactNumber, $Fld_DateHired, $Fld_Position, $Fld_JobDesc, $Fld_JobDesc);
-
-    if ($success) {
-        echo "Data saved successfully.";
-    } else {
-        echo "Error saving data.";
-    }
-} */
-?>
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -42,8 +13,6 @@ require_once 'function.php';
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
-    
-
     <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
@@ -56,10 +25,16 @@ require_once 'function.php';
     <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
-    
 </head>
 
 <body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+
+
 
     <div class="container-fluid">
         <div class="page-header">
@@ -67,6 +42,7 @@ require_once 'function.php';
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <i class="ik ik-users bg-blue"></i>
+                        <!-- NAVIGATION MENU ^^^^ -->
                         <div class="d-inline">
                             <h5>Emloyee</h5>
                             <span>Make Employee Management Extremely Simple</span>
@@ -93,7 +69,7 @@ require_once 'function.php';
                 <div class="card">
                     <div class="card-header d-block">
                         <h3>Employee List</h3>
-                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
+                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="fa fa-plus"></span> Add Employee</button>
 
                     </div>
 
@@ -125,8 +101,7 @@ require_once 'function.php';
                                                 <div class="table-actions" style="text-align: center;">
                                                     <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title="Change Employee Status"></i> </a>
-                                              
+                                                    <a href="delete.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: red;"><i class="ik ik-trash-2"></i></a>
                                                 </div>
                                             </td>
 
@@ -141,7 +116,6 @@ require_once 'function.php';
         </div>
 
     </div>
-    
     <!-- Add Employee -->
     <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -153,24 +127,26 @@ require_once 'function.php';
                 <div class="modal-body">
                     <!-- Put employee record here -->
 
-                    <form class="forms-sample" method="POST">
+
+
+                    <form class="forms-sample">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name">
+                                    <label for="FirstName">First Name</label>
+                                    <input type="text" class="form-control" id="FirstName" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name">
+                                    <label for="MiddleName">Middel Name</label>
+                                    <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name">
+                                    <label for="LastName">Last Name</label>
+                                    <input type="text" class="form-control" id="LastName" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -179,14 +155,14 @@ require_once 'function.php';
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" />
+                                    <label for="Birthday">Birth Date</label>
+                                    <input id="dropper-animation" class="form-control" type="date" id="Birthday" placeholder="Birthday" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Fld_Gender">Gender</label>
-                                    <select class="form-control" name="Fld_Gender">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control" id="gender">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
@@ -194,14 +170,14 @@ require_once 'function.php';
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="Fld_Address">Address</label>
-                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" />
+                                    <label for="address">Address</label>
+                                    <input class="form-control" type="text" id="address" placeholder="Address" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" />
+                                    <label for="ContactNumber">Contact Number</label>
+                                    <input class="form-control" type="text" id="ContactNumber" placeholder="Contact Number" />
                                 </div>
                             </div>
                         </div>
@@ -209,20 +185,14 @@ require_once 'function.php';
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID">
+                                    <label for="datehired">Date Hired</label>
+                                    <input type="date" class="form-control" id="datehired" placeholder="Date Hired">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_Position">Position</label>
-                                    <select class="form-control select2" name="Fld_Position">
+                                    <label for="Position">Position</label>
+                                    <select class="form-control select2" id="Position">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_position");
@@ -237,8 +207,8 @@ require_once 'function.php';
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Fld_Status">Status</label>
-                                    <select class="form-control select2" name="Fld_Status">
+                                    <label for="status">Status</label>
+                                    <select class="form-control select2" id="status">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
@@ -255,60 +225,41 @@ require_once 'function.php';
 
                         <div class="form-group">
                             <label for="jobdesc">Job Description</label>
-                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"></textarea>
+                            <textarea class="form-control html-editor" rows="10" id="jobdesc"></textarea>
                         </div>
+
+                    </form>
 
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="1" name="type">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name='save'>Save changes</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
-
             </div>
-            </form>
         </div>
     </div>
 
 
-    <!-- Change Status Modal HTML -->
-    <div id="statusEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form id="update_form" method="POST">
-					<div class="modal-header">						
-						<h4 class="modal-title">Update Employee Status</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					</div>
-					<div class="modal-body">
-						<input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>					
-                        <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Fld_Status">Employee Status</label>
-                                    <select class="form-control" name="Fld_Status">
-                                        <?php
-                                        include 'db-config.php';
-                                        $users = $conn->query("SELECT * FROM tbl_emp_status");
-                                        $i = 1;
-                                        while ($row = $users->fetch_assoc()) :
-                                        ?>
-                                            <option><?php echo $row['Fld_Status']; ?></option>
-                                        <?php endwhile; ?>
-
-                                    </select>
+    <!--  <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="quick-search">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 ml-auto mr-auto">
+                                <div class="input-wrap">
+                                    <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
+                                    <i class="ik ik-search"></i>
                                 </div>
                             </div>
-									
-					</div>
-					<div class="modal-footer">
-					<input type="hidden" value="2" name="type">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-info"  id="update">Update</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -324,13 +275,20 @@ require_once 'function.php';
     <script src="../plugins/select2/dist/js/select2.min.js"></script>
     <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
 
-   <!--  <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#table').DataTable();
         });
-    </script> -->
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-   
+            $('#new_emp_btn').click(function() {
+                uni_modal("New Employee", "manage-employee.php")
+            })
+
+
+        });
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
