@@ -33,7 +33,7 @@ require_once 'function.php';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Employee | ePMS</title>
+    <title>Users | ePMS</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,8 +41,6 @@ require_once 'function.php';
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-
-    
 
     <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -56,7 +54,6 @@ require_once 'function.php';
     <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
-    
 </head>
 
 <body>
@@ -68,7 +65,7 @@ require_once 'function.php';
                     <div class="page-header-title">
                         <i class="ik ik-users bg-blue"></i>
                         <div class="d-inline">
-                            <h5>Emloyee</h5>
+                            <h5>Users</h5>
                             <span>Make Employee Management Extremely Simple</span>
                         </div>
                     </div>
@@ -79,7 +76,7 @@ require_once 'function.php';
                             <li class="breadcrumb-item">
                                 <a href="#"><i class="ik ik-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Employee</li>
+                            <li class="breadcrumb-item active" aria-current="page">Users</li>
                         </ol>
                     </nav>
                 </div>
@@ -92,8 +89,8 @@ require_once 'function.php';
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-block">
-                        <h3>Employee List</h3>
-                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
+                        <h3>User List</h3>
+                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_user_btn"><span class="ik ik-user-plus"></span> Add User</button>
 
                     </div>
 
@@ -104,7 +101,9 @@ require_once 'function.php';
                                     <tr>
                                         <th>Employee ID</th>
                                         <th>Name</th>
-                                        <th>Position</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Date Added</th>
                                         <th>Status</th>
                                         <th class="nosort">&nbsp;</th>
                                     </tr>
@@ -112,14 +111,19 @@ require_once 'function.php';
                                 <tbody>
                                     <?php
                                     include 'db-config.php';
-                                    $users = $conn->query("SELECT * FROM tbl_employee");
+                                    $users = $conn->query("SELECT * FROM tbl_users");
                                     $i = 1;
                                     while ($row = $users->fetch_assoc()) :
+
+                                        $today = date(" F d, Y");
+                                        
                                     ?>
                                         <tr>
-                                            <td><?php echo $row['Fld_EmployeeID']; ?> </td>
-                                            <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?>. <?php echo $row['Fld_LastName']; ?></td>
-                                            <td><?php echo $row['Fld_Position']; ?></td>
+                                            <td><?php echo $row['Fld_emp_recid']; ?></td>
+                                            <td><?php echo $row['Fld_Name']; ?> </td>
+                                            <td><?php echo $row['Fld_Email']; ?></td>
+                                            <td><?php echo $row['Fld_Role']; ?></td>
+                                            <td><?php echo $row['Fld_DateInserted']; ?></td>
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
@@ -142,11 +146,11 @@ require_once 'function.php';
 
     </div>
     <!-- Add Employee -->
-    <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
+    <div class="modal fade full-window-modal" id="new_user_btn" tabindex="-1" role="dialog" aria-labelledby="new_user_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="new_emp_btn">Update Employee List</h5>
+                    <h5 class="modal-title" id="new_user_btn">Add User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
