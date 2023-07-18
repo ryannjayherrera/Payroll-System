@@ -250,7 +250,7 @@ include 'db-config.php';
                 <div class="modal-footer">
                     <input type="hidden" value="1" name="type">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name='save'>Save changes</button>
+                    <button type="submit" class="btn btn-primary" name='addEmployee'>Save changes</button>
                 </div>
             </div>
         </div>
