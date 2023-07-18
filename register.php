@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
          $insert = "INSERT INTO tbl_users(name, Fld_UserName, Fld_Hash, Fld_Type) VALUES('$name','$email','$pass','$user_type')";
          mysqli_query($db, $insert);
          header('location:login_form.php');
-      }
+      } 
    }
 
 };
