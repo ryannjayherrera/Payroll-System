@@ -18,21 +18,21 @@ include 'db-config.php';
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
-    
 
-    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
-    <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
-    <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="../plugins/weather-icons/css/weather-icons.min.css">
-    <link rel="stylesheet" href="../dist/css/theme.min.css">
-    <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
-    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
-    <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
-    <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
-    
+
+    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="plugins/weather-icons/css/weather-icons.min.css">
+    <link rel="stylesheet" href="dist/css/theme.min.css">
+    <link rel="stylesheet" href="plugins/datedropper/datedropper.min.css">
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
+    <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
 <body>
@@ -50,7 +50,6 @@ include 'db-config.php';
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <i class="ik ik-users bg-blue"></i>
-                        <!-- NAVIGATION MENU ^^^^ -->
                         <div class="d-inline">
                             <h5>Emloyee</h5>
                             <span>Make Employee Management Extremely Simple</span>
@@ -95,7 +94,7 @@ include 'db-config.php';
                                 </thead>
                                 <tbody>
                                     <?php
-                                
+
                                     $users = $conn->query("SELECT * FROM tbl_employee");
                                     $i = 1;
                                     while ($row = $users->fetch_assoc()) :
@@ -109,8 +108,8 @@ include 'db-config.php';
                                                 <div class="table-actions" style="text-align: center;">
                                                     <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title="Change Employee Status"></i> </a>
-                                              
+                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
+
                                                 </div>
                                             </td>
 
@@ -125,7 +124,7 @@ include 'db-config.php';
         </div>
 
     </div>
-    
+
     <!-- Add Employee -->
     <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -137,9 +136,7 @@ include 'db-config.php';
                 <div class="modal-body">
                     <!-- Put employee record here -->
 
-
-
-                    <form class="forms-sample">
+                    <form class="forms-sample" action="POST">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -248,7 +245,6 @@ include 'db-config.php';
 
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="1" name="type">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" name='addEmployee'>Save changes</button>
                 </div>
@@ -259,46 +255,43 @@ include 'db-config.php';
 
     <!-- Change Status Modal HTML -->
     <div id="statusEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form id="update_form" method="POST">
-					<div class="modal-header">						
-						<h4 class="modal-title">Update Employee Status</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					</div>
-					<div class="modal-body">
-						<input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>					
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="update_form" method="POST">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Employee Status</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>
                         <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Fld_Status">Employee Status</label>
-                                    <select class="form-control" name="Fld_Status">
-                                        <?php
-                                        include 'db-config.php';
-                                        $users = $conn->query("SELECT * FROM tbl_emp_status");
-                                        $i = 1;
-                                        while ($row = $users->fetch_assoc()) :
-                                        ?>
-                                            <option><?php echo $row['Fld_Status']; ?></option>
-                                        <?php endwhile; ?>
+                            <div class="form-group">
+                                <label for="Fld_Status">Employee Status</label>
+                                <select class="form-control" name="Fld_Status">
+                                    <?php
+                                    include 'db-config.php';
+                                    $users = $conn->query("SELECT * FROM tbl_emp_status");
+                                    $i = 1;
+                                    while ($row = $users->fetch_assoc()) :
+                                    ?>
+                                        <option><?php echo $row['Fld_Status']; ?></option>
+                                    <?php endwhile; ?>
 
-                                    </select>
-                                </div>
+                                </select>
                             </div>
-									
-					</div>
-					<div class="modal-footer">
-					<input type="hidden" value="2" name="type">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-info"  id="update">Update</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                        </div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" value="2" name="type">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <button type="button" class="btn btn-info" id="update">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div> 
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -320,7 +313,7 @@ include 'db-config.php';
         });
     </script>
 
-   
+
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
