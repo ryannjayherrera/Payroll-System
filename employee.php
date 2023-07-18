@@ -1,30 +1,7 @@
 <?php
 require_once 'function.php';
+include 'db-config.php';
 
-// Save data when the form is submitted
-/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
-    $Fld_FirstName = $_POST['Fld_FirstName'];
-    $Fld_MiddleName = $_POST['Fld_MiddleName'];
-    $Fld_LastName = $_POST['Fld_LastName'];
-    $Fld_Gender = $_POST['Fld_Gender'];
-    $Fld_Age = $_POST['Fld_Age'];
-    $Fld_DateHired = $_POST['Fld_DateHired'];
-    $Fld_Birthday = $_POST['Fld_Birthday'];
-    $Fld_Address = $_POST['Fld_Address'];
-    $Fld_ContactNumber = $_POST['Fld_ContactNumber'];
-    $Fld_Position = $_POST['Fld_Position'];
-    $Fld_JobDesc = $_POST['Fld_JobDesc'];
-    $Fld_Status = $_POST['Fld_Status'];
-
-    $success = createEmployee($Fld_EmployeeID, $Fld_FirstName, $Fld_MiddleName, $Fld_LastName, $Fld_Gender, $Fld_Age, $Fld_Birthday, $Fld_Address, $Fld_ContactNumber, $Fld_DateHired, $Fld_Position, $Fld_JobDesc, $Fld_JobDesc);
-
-    if ($success) {
-        echo "Data saved successfully.";
-    } else {
-        echo "Error saving data.";
-    }
-} */
 ?>
 
 <!doctype html>
@@ -38,24 +15,24 @@ require_once 'function.php';
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
 
 
-    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
-    <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
-    <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="../plugins/weather-icons/css/weather-icons.min.css">
-    <link rel="stylesheet" href="../dist/css/theme.min.css">
-    <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
-    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
-    <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
-    <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="plugins/weather-icons/css/weather-icons.min.css">
+    <link rel="stylesheet" href="dist/css/theme.min.css">
+    <link rel="stylesheet" href="plugins/datedropper/datedropper.min.css">
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
+    <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
 
@@ -123,11 +100,15 @@ require_once 'function.php';
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
-                                                    <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
+                                                    <!--   <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
-                                                    <button class="btn btn-success btn-sm updatestatus btn-flat" data-id="<?php echo $row['Fld_RecID']; ?>"><i class="fa fa-edit"></i> Edit</button>
-                            
+                                                    <a href="#statusEmployeeModal" class="updatestatus" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
+ -->
+                                                    <center>
+                                                        <button class="btn btn-icon btn-primary view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus" data-toggle="tooltip" title=" Employee Earnings"></i></button>
+                                                        <button class="btn btn-icon btn-warning edit_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-edit-2" data-toggle="tooltip" title=" Update Employee Record"></i></button>
+                                                        <button class="btn btn-icon btn-success status_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-file-text" data-toggle="tooltip" title=" Employee Status"></i></button>
+                                                    </center>
                                                 </div>
                                             </td>
 
@@ -159,19 +140,19 @@ require_once 'function.php';
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name">
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_FirstName" placeholder="First Name" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name">
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_MiddleName" placeholder="Middle Name" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name">
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_LastName" placeholder="Last Name" required>
                                 </div>
                             </div>
                         </div>
@@ -181,28 +162,30 @@ require_once 'function.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" />
+                                    <input id="dropper-animation" class="form-control form-control-uppercase" type="date" name="Fld_Birthday" placeholder="Birthday" required>
+
+
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Gender">Gender</label>
                                     <select class="form-control" name="Fld_Gender">
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                        <option>MALE</option>
+                                        <option>FEMALE</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Fld_Address">Address</label>
-                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" />
+                                    <input class="form-control form-control-uppercasel" type="text" name="Fld_Address" placeholder="Address" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" />
+                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" required>
                                 </div>
                             </div>
                         </div>
@@ -211,26 +194,26 @@ require_once 'function.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID">
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_EmployeeID" placeholder="Employee ID" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired">
+                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_DateHired" placeholder="Date Hired" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Position">Position</label>
-                                    <select class="form-control select2" name="Fld_Position">
+                                    <select class="form-control select2" name="Fld_Position" required>
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_position");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
                                         ?>
-                                            <option><?php echo $row['Fld_PositionName']; ?></option>
+                                            <option class="form-control form-control-uppercase"><?php echo $row['Fld_PositionName']; ?></option>
                                         <?php endwhile; ?>
 
                                     </select>
@@ -246,7 +229,7 @@ require_once 'function.php';
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
                                         ?>
-                                            <option><?php echo $row['Fld_Status']; ?></option>
+                                            <option class="form-control form-control-uppercase"><?php echo $row['Fld_Status']; ?></option>
                                         <?php endwhile; ?>
 
                                     </select>
@@ -261,9 +244,9 @@ require_once 'function.php';
 
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="1" name="type">
+
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name='save'>Save changes</button>
+                    <button type="submit" class="btn btn-primary" name='addEmployee'>Save changes</button>
                 </div>
 
             </div>
@@ -273,10 +256,10 @@ require_once 'function.php';
 
 
     <!-- Change Status Modal HTML -->
-    <div id="statusEmployeeModal" class="modal fade">
+    <div id="status_employee" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="update_form" method="POST">
+                <form id="forms-sample" method="POST">
                     <div class="modal-header">
                         <h4 class="modal-title">Update Employee Status</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -288,7 +271,7 @@ require_once 'function.php';
                                 <label for="Fld_Status">Employee Status</label>
                                 <select class="form-control" name="Fld_Status">
                                     <?php
-                                    include 'db-config.php';
+
                                     $users = $conn->query("SELECT * FROM tbl_emp_status");
                                     $i = 1;
                                     while ($row = $users->fetch_assoc()) :
@@ -302,9 +285,8 @@ require_once 'function.php';
 
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" value="2" name="type">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button type="button" class="btn btn-info" id="update">Update</button>
+                        <button type="submit" class="btn btn-info" id="UpdateStatus">Update</button>
                     </div>
                 </form>
             </div>
@@ -313,31 +295,32 @@ require_once 'function.php';
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+        window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
     </script>
-    <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-    <script src="../plugins/screenfull/dist/screenfull.js"></script>
-    <script src="../dist/js/theme.min.js"></script>
-    <script src="../plugins/datedropper/datedropper.min.js"></script>
-    <script src="../js/form-picker.js"></script>
-    <script src="../plugins/select2/dist/js/select2.min.js"></script>
-    <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="plugins/popper.js/dist/umd/popper.min.js"></script>
+    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="plugins/screenfull/dist/screenfull.js"></script>
+    <script src="dist/js/theme.min.js"></script>
+    <script src="plugins/datedropper/datedropper.min.js"></script>
+    <script src="js/form-picker.js"></script>
+    <script src="plugins/select2/dist/js/select2.min.js"></script>
+    <script src="plugins/summernote/dist/summernote-bs4.min.js"></script>
 
-    <!--  <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#table').DataTable();
         });
-    </script> -->
-    <script>
-        $(function() {
-            $('.statusEmployeeModal').click(function(e) {
-                e.preventDefault();
-                $('#statusEmployeeModal').modal('show');
-                var id = $(this).data('Fld_RecID');
-                getRow(id);
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('.status_employee').click(function() {
+                var $id = $(this).attr('data-id');
+                uni_modal("status_employee", "function.php?id=" + $id)
+
             });
+        
         });
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
