@@ -3,6 +3,7 @@
 
 include 'function.php';
 
+
 ?>
 
 <!doctype html>
@@ -75,7 +76,7 @@ include 'function.php';
                                     </div>
                                 </div>
                                 <div class="sign-btn text-center">
-                                    <input type="submit" name="submit">
+                                    <button type= "submit" name="login"class="btn btn-theme">Login</button>
                                 </div>
                             </form>
                             <!-- <div class="register">

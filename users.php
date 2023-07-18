@@ -1,30 +1,6 @@
 <?php
-require_once 'function.php';
+include 'function.php';
 
-// Save data when the form is submitted
-/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
-    $Fld_FirstName = $_POST['Fld_FirstName'];
-    $Fld_MiddleName = $_POST['Fld_MiddleName'];
-    $Fld_LastName = $_POST['Fld_LastName'];
-    $Fld_Gender = $_POST['Fld_Gender'];
-    $Fld_Age = $_POST['Fld_Age'];
-    $Fld_DateHired = $_POST['Fld_DateHired'];
-    $Fld_Birthday = $_POST['Fld_Birthday'];
-    $Fld_Address = $_POST['Fld_Address'];
-    $Fld_ContactNumber = $_POST['Fld_ContactNumber'];
-    $Fld_Position = $_POST['Fld_Position'];
-    $Fld_JobDesc = $_POST['Fld_JobDesc'];
-    $Fld_Status = $_POST['Fld_Status'];
-
-    $success = createEmployee($Fld_EmployeeID, $Fld_FirstName, $Fld_MiddleName, $Fld_LastName, $Fld_Gender, $Fld_Age, $Fld_Birthday, $Fld_Address, $Fld_ContactNumber, $Fld_DateHired, $Fld_Position, $Fld_JobDesc, $Fld_JobDesc);
-
-    if ($success) {
-        echo "Data saved successfully.";
-    } else {
-        echo "Error saving data.";
-    }
-} */
 ?>
 
 <!doctype html>
@@ -104,7 +80,7 @@ require_once 'function.php';
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
-                                        <th>Date Added</th>
+                                        
                                         <th>Status</th>
                                         <th class="nosort">&nbsp;</th>
                                     </tr>
@@ -124,7 +100,7 @@ require_once 'function.php';
                                             <td><?php echo $row['Fld_Name']; ?> </td>
                                             <td><?php echo $row['Fld_Email']; ?></td>
                                             <td><?php echo $row['Fld_Role']; ?></td>
-                                            <td><?php echo $row['Fld_DateInserted']; ?></td>
+                                            
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
@@ -147,8 +123,8 @@ require_once 'function.php';
 
     </div>
     <!-- Add Employee -->
-    <div class="modal fade full-window-modal" id="new_user_btn" tabindex="-1" role="dialog" aria-labelledby="new_user_btn" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <<div class="modal fade" id="new_user_btn" tabindex="-1" role="dialog" aria-labelledby="new_user_btn" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="new_user_btn">Add User</h5>
@@ -157,120 +133,43 @@ require_once 'function.php';
                 <div class="modal-body">
                     <!-- Put employee record here -->
 
-                    <form class="forms-sample" method="POST">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name">
+                    <div class="form-group">
+                                    <input type="number" name="rec_id" class="form-control" placeholder="Employee ID" required="">
+                                   
+                                    
                                 </div>
-                            </div>
-                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name">
+                                    <input type="text" name="name" class="form-control" placeholder="Name" required="">
+                                  
                                 </div>
-                            </div>
-                            <div class="col-md-4">
+                                
                                 <div class="form-group">
-                                    <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name">
+                                    <input type="text" name="email" class="form-control" placeholder="Email" required="">
+                                  
                                 </div>
-                            </div>
-                        </div>
 
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                                   
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password" required="">
+                                </div>
+                                <div class="form-group">
+                                <select name = "user_type" class="form-control">
+                                   
+                                    <option value="user">user</option>
+                                    <option value="admin">admin</option>
+                                  
+                                </select>
+                                    </div>       
 
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" />
+                                <div class="sign-btn text-center">
+                                    <button type= "submit" name="add_user"class="btn btn-theme">Add user</button>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_Gender">Gender</label>
-                                    <select class="form-control" name="Fld_Gender">
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="Fld_Address">Address</label>
-                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" />
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" />
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_Position">Position</label>
-                                    <select class="form-control select2" name="Fld_Position">
-                                        <?php
-                                        include 'db-config.php';
-                                        $users = $conn->query("SELECT * FROM tbl_position");
-                                        $i = 1;
-                                        while ($row = $users->fetch_assoc()) :
-                                        ?>
-                                            <option><?php echo $row['Fld_PositionName']; ?></option>
-                                        <?php endwhile; ?>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Fld_Status">Status</label>
-                                    <select class="form-control select2" name="Fld_Status">
-                                        <?php
-                                        include 'db-config.php';
-                                        $users = $conn->query("SELECT * FROM tbl_emp_status");
-                                        $i = 1;
-                                        while ($row = $users->fetch_assoc()) :
-                                        ?>
-                                            <option><?php echo $row['Fld_Status']; ?></option>
-                                        <?php endwhile; ?>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="jobdesc">Job Description</label>
-                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"></textarea>
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" value="1" name="type">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name='save'>Save changes</button>
-                </div>
-
-            </div>
-            </form>
+                                
+                            </form>
         </div>
     </div>
 
