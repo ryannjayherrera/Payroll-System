@@ -141,6 +141,7 @@ require_once 'function.php';
         </div>
 
     </div>
+    
     <!-- Add Employee -->
     <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -280,7 +281,7 @@ require_once 'function.php';
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					</div>
 					<div class="modal-body">
-						<input type="text" id="id_u" name="Fld_RecID" class="form-control" required>					
+						<input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>					
                         <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="Fld_Status">Employee Status</label>
