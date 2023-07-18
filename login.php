@@ -1,3 +1,10 @@
+<?php
+
+
+include 'controller.php';
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -43,13 +50,17 @@
                             </div>
                             <h3>Sign In to Jhana HR System</h3>
                             <p>Happy to see you again!</p>
-                            <form action="../index.html">
+
+                            <div class="form-container">
+
+ 
+                            <form action="" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email" required="">
+                                    <input type="email" name = "email" class="form-control" placeholder="Email" required="">
                                     <i class="ik ik-user"></i>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" required="">
+                                    <input type="password" name = "password" class="form-control" placeholder="Password" required="">
                                     <i class="ik ik-lock"></i>
                                 </div>
                                 <div class="row">
@@ -64,12 +75,12 @@
                                     </div>
                                 </div>
                                 <div class="sign-btn text-center">
-                                    <button class="btn btn-theme">Sign In</button>
+                                    <input type="submit" name="submit">
                                 </div>
                             </form>
-                            <div class="register">
+                            <!-- <div class="register">
                                 <p>Don't have an account? <a href="register.php">Create an account</a></p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
