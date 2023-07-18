@@ -1,3 +1,6 @@
+<?php
+$page_name = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+?>
 
 <div class="app-sidebar colored">
     <div class="sidebar-header">
@@ -5,7 +8,7 @@
             <div class="logo-img">
                 <img src="src/img/brand-white.svg" class="header-brand-img" alt="lavalite">
             </div>
-            <span class="text">ThemeKit</span>
+            <span class="text">ePMS</span>
         </a>
         <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
@@ -20,10 +23,13 @@
                 
                 <div class="nav-lavel">Employee Management</div>
                 <div class="nav-item">
-                    <a href="index.php?page=employee" class="nav-item nav-employee"><i class="ik ik ik-users"></i>Employee</a>
+                    <a href="index.php?page=employee" class="nav-item nav-employee "><span class='icon-field'><i class="ik ik ik-users"></i></span>Employee</a>
                 </div>
             </nav>
-
         </div>
     </div>
 </div>
+
+<script>
+	$('.nav-<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active')
+</script>

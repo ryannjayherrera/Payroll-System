@@ -1,3 +1,32 @@
+<?php
+require_once 'function.php';
+
+// Save data when the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
+    $Fld_FirstName = $_POST['Fld_FirstName'];
+    $Fld_MiddleName = $_POST['Fld_MiddleName'];
+    $Fld_LastName = $_POST['Fld_LastName'];
+    $Fld_Gender = $_POST['Fld_Gender'];
+    $Fld_Age = $_POST['Fld_Age'];
+    $Fld_DateHired = $_POST['Fld_DateHired'];
+    $Fld_Birthday = $_POST['Fld_Birthday'];
+    $Fld_Address = $_POST['Fld_Address'];
+    $Fld_ContactNumber = $_POST['Fld_ContactNumber'];
+    $Fld_Position = $_POST['Fld_Position'];
+    $Fld_JobDesc = $_POST['Fld_JobDesc'];
+    $Fld_Status = $_POST['Fld_Status'];
+
+    $success = createEmployee($Fld_EmployeeID, $Fld_FirstName, $Fld_MiddleName, $Fld_LastName, $Fld_Gender, $Fld_Age, $Fld_Birthday, $Fld_Address, $Fld_ContactNumber, $Fld_DateHired, $Fld_Position, $Fld_JobDesc, $Fld_JobDesc);
+
+    if ($success) {
+        echo "Data saved successfully.";
+    } else {
+        echo "Error saving data.";
+    }
+}
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -28,14 +57,7 @@
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-
-
-
-
+ 
     <div class="container-fluid">
         <div class="page-header">
             <div class="row align-items-end">
@@ -129,24 +151,24 @@
 
 
 
-                    <form class="forms-sample">
+                    <form class="forms-sample" method="POST">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="FirstName">First Name</label>
-                                    <input type="text" class="form-control" id="FirstName" placeholder="First Name">
+                                    <label for="Fld_FirstName">First Name</label>
+                                    <input type="text" class="form-control" id="Fld_FirstName" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name">
+                                    <label for="Fld_MiddleName">Middel Name</label>
+                                    <input type="text" class="form-control" id="Fld_MiddleName" placeholder="Middle Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="LastName">Last Name</label>
-                                    <input type="text" class="form-control" id="LastName" placeholder="Last Name">
+                                    <label for="Fld_LastName">Last Name</label>
+                                    <input type="text" class="form-control" id="Fld_LastName" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -155,14 +177,14 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" id="Birthday" placeholder="Birthday" />
+                                    <label for="Fld_Birthday">Birth Date</label>
+                                    <input id="dropper-animation" class="form-control" type="date" id="Fld_Birthday" placeholder="Birthday" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="gender">Gender</label>
-                                    <select class="form-control" id="gender">
+                                    <label for="Fld_Gender">Gender</label>
+                                    <select class="form-control" id="Fld_Gender">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
@@ -170,29 +192,35 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input class="form-control" type="text" id="address" placeholder="Address" />
+                                    <label for="Fld_Address">Address</label>
+                                    <input class="form-control" type="text" id="Fld_Address" placeholder="Address" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" id="ContactNumber" placeholder="Contact Number" />
+                                    <label for="Fld_ContactNumber">Contact Number</label>
+                                    <input class="form-control" type="text" id="Fld_ContactNumber" placeholder="Contact Number" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-2">
+                        <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="datehired">Date Hired</label>
-                                    <input type="date" class="form-control" id="datehired" placeholder="Date Hired">
+                                    <label for="Fld_EmployeeID">Employee ID</label>
+                                    <input type="text" class="form-control" id="Fld_EmployeeID" placeholder="Employee ID">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="Position">Position</label>
-                                    <select class="form-control select2" id="Position">
+                                    <label for="Fld_DateHired">Date Hired</label>
+                                    <input type="date" class="form-control" id="Fld_DateHired" placeholder="Date Hired">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Fld_Position">Position</label>
+                                    <select class="form-control select2" id="Fld_Position">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_position");
@@ -207,8 +235,8 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control select2" id="status">
+                                    <label for="Fld_Status">Status</label>
+                                    <select class="form-control select2" id="Fld_Status">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
@@ -233,7 +261,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
