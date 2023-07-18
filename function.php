@@ -2,7 +2,69 @@
 include 'db-config.php';
 
 
-if(isset($_POST['submit'])){
+if(isset($_POST['add_user'])){
+
+	echo "sad";
+
+	$name = mysqli_real_escape_string($db, $_POST['name']);
+	$email = mysqli_real_escape_string($db, $_POST['email']);
+	$pass = md5($_POST['password']);
+	$cpass = md5($_POST['cpassword']);
+	$user_type = $_POST['user_type'];
+	$recid = $_POST['rec_id'];
+ 
+	$select = " SELECT * FROM tbl_users WHERE email = '$email' && password = '$pass' ";
+ 
+	$result = mysqli_query($db, $select);
+ 
+	if(mysqli_num_rows($result) > 0){
+ 
+	   $error[] = 'user already exist!';
+ 
+	}else{
+ 
+	   if($pass != $cpass){
+		  $error[] = 'password not matched!';
+	   }else{
+		  $insert = "INSERT INTO tbl_users(Fld_Role, Fld_Name, Fld_Email, Fld_Hash, Fld_emp_recid) VALUES('$user_type', '$name', '$email', '$pass', '$rec_id')";
+		  mysqli_query($db, $insert);
+		  header('location:users.php');
+	   }
+	}
+ 
+ }
+
+// if(isset($_POST['add_user'])){
+
+// 	$recid = $_POST['rec_id'];
+// 	$role = $_POST['role'];
+// 	$name = $_POST['name'];
+// 	$email = $_POST['email'];
+// 	$password = md5($_POST['password']);
+	
+
+
+// 	$sql = "INSERT INTO tbl_users (Fld_Role, Fld_Name, Fld_Email, Fld_Password, Fld_emp_recid) 
+// 	VALUES ('$role', '$name', '$email', '$password', '$rec_id')";
+
+// 	   if (mysqli_query($conn, $sql)) {
+		  
+// 		   $_SESSION['success'] = 'User added successfully';
+// 	   } else {
+// 		   echo "Error: " . $sql . "" . mysqli_error($conn);
+// 		   }      
+// 			mysqli_close($conn);
+//    }
+
+
+
+
+
+
+
+
+
+if(isset($_POST['login'])){
 
   
 $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -33,7 +95,7 @@ if(mysqli_num_rows($result) > 0){
    $error[] = 'incorrect email or password!';
 }  
 
-};
+}
 
 
 if(count($_POST)>0){
