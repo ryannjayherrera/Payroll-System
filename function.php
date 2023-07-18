@@ -21,7 +21,7 @@ if(count($_POST)>0){
      VALUES ('$Fld_EmployeeID', '$Fld_FirstName', '$Fld_MiddleName', '$Fld_LastName', '$Fld_Gender', '$Fld_Birthday', '$Fld_Address', '$Fld_ContactNumber','$Fld_DateHired', '$Fld_Position', '$Fld_JobDesc', '$Fld_Status')";
  
         if (mysqli_query($conn, $sql)) {
-            echo json_encode(array("statusCode"=>200));
+           
     //echo "New record created successfully !";
 	    } else {
 		    echo "Error: " . $sql . "" . mysqli_error($conn);
@@ -30,14 +30,13 @@ if(count($_POST)>0){
     }
 }
 
-
 if(count($_POST)>0){
 	if($_POST['type']==2){
 		$Fld_RecID = $_POST['Fld_RecID'];
 		$Fld_Status = $_POST['Fld_Status'];
 		$sql = "UPDATE `tbl_employee` SET `Fld_Status`='$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
 		if (mysqli_query($conn, $sql)) {
-			echo json_encode(array("statusCode"=>200));
+			//echo json_encode(array("statusCode"=>200));
 		} 
 		else {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
