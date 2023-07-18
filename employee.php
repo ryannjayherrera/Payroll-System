@@ -42,7 +42,7 @@ require_once 'function.php';
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
-    
+
 
     <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -56,7 +56,7 @@ require_once 'function.php';
     <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -125,8 +125,9 @@ require_once 'function.php';
                                                 <div class="table-actions" style="text-align: center;">
                                                     <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title="Change Employee Status"></i> </a>
-                                              
+                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
+                                                    <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['Fld_RecID']; ?>"><i class="fa fa-edit"></i> Edit</button>
+                            
                                                 </div>
                                             </td>
 
@@ -141,7 +142,7 @@ require_once 'function.php';
         </div>
 
     </div>
-    
+
     <!-- Add Employee -->
     <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -273,42 +274,42 @@ require_once 'function.php';
 
     <!-- Change Status Modal HTML -->
     <div id="statusEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form id="update_form" method="POST">
-					<div class="modal-header">						
-						<h4 class="modal-title">Update Employee Status</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					</div>
-					<div class="modal-body">
-						<input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>					
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="update_form" method="POST">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Employee Status</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>
                         <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Fld_Status">Employee Status</label>
-                                    <select class="form-control" name="Fld_Status">
-                                        <?php
-                                        include 'db-config.php';
-                                        $users = $conn->query("SELECT * FROM tbl_emp_status");
-                                        $i = 1;
-                                        while ($row = $users->fetch_assoc()) :
-                                        ?>
-                                            <option><?php echo $row['Fld_Status']; ?></option>
-                                        <?php endwhile; ?>
+                            <div class="form-group">
+                                <label for="Fld_Status">Employee Status</label>
+                                <select class="form-control" name="Fld_Status">
+                                    <?php
+                                    include 'db-config.php';
+                                    $users = $conn->query("SELECT * FROM tbl_emp_status");
+                                    $i = 1;
+                                    while ($row = $users->fetch_assoc()) :
+                                    ?>
+                                        <option><?php echo $row['Fld_Status']; ?></option>
+                                    <?php endwhile; ?>
 
-                                    </select>
-                                </div>
+                                </select>
                             </div>
-									
-					</div>
-					<div class="modal-footer">
-					<input type="hidden" value="2" name="type">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-info"  id="update">Update</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" value="2" name="type">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <button type="button" class="btn btn-info" id="update">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -324,13 +325,20 @@ require_once 'function.php';
     <script src="../plugins/select2/dist/js/select2.min.js"></script>
     <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
 
-   <!--  <script type="text/javascript">
+    <!--  <script type="text/javascript">
         $(document).ready(function() {
             $('#table').DataTable();
         });
     </script> -->
-
-   
+    <script>
+        $(function() {
+            $('.edit').click(function(e) {
+                e.preventDefault();
+                $('#statusEmployeeModal').modal('show');
+                var id = $(this).data('Fld_RecID');
+                getRow(id);
+            });
+        });
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
