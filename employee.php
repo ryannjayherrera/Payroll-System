@@ -1,30 +1,6 @@
 <?php
 require_once 'function.php';
-
-// Save data when the form is submitted
-/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $Fld_EmployeeID = $_POST['Fld_EmployeeID'];
-    $Fld_FirstName = $_POST['Fld_FirstName'];
-    $Fld_MiddleName = $_POST['Fld_MiddleName'];
-    $Fld_LastName = $_POST['Fld_LastName'];
-    $Fld_Gender = $_POST['Fld_Gender'];
-    $Fld_Age = $_POST['Fld_Age'];
-    $Fld_DateHired = $_POST['Fld_DateHired'];
-    $Fld_Birthday = $_POST['Fld_Birthday'];
-    $Fld_Address = $_POST['Fld_Address'];
-    $Fld_ContactNumber = $_POST['Fld_ContactNumber'];
-    $Fld_Position = $_POST['Fld_Position'];
-    $Fld_JobDesc = $_POST['Fld_JobDesc'];
-    $Fld_Status = $_POST['Fld_Status'];
-
-    $success = createEmployee($Fld_EmployeeID, $Fld_FirstName, $Fld_MiddleName, $Fld_LastName, $Fld_Gender, $Fld_Age, $Fld_Birthday, $Fld_Address, $Fld_ContactNumber, $Fld_DateHired, $Fld_Position, $Fld_JobDesc, $Fld_JobDesc);
-
-    if ($success) {
-        echo "Data saved successfully.";
-    } else {
-        echo "Error saving data.";
-    }
-} */
+include 'db-config.php';
 ?>
 
 <!doctype html>
@@ -119,7 +95,7 @@ require_once 'function.php';
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include 'db-config.php';
+                                
                                     $users = $conn->query("SELECT * FROM tbl_employee");
                                     $i = 1;
                                     while ($row = $users->fetch_assoc()) :
