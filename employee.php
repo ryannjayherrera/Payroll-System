@@ -76,7 +76,7 @@ include 'db-config.php';
                 <div class="card">
                     <div class="card-header d-block">
                         <h3>Employee List</h3>
-                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="fa fa-plus"></span> Add Employee</button>
+                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
 
                     </div>
 
@@ -106,10 +106,16 @@ include 'db-config.php';
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
-                                                    <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
+                                                    <!--   <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
                                                     <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
+                                                 -->
 
+                                                    <center>
+                                                        <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
+                                                        <button class="btn btn-icon btn-primary edit_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-edit-2"></i></button>
+                                                        <button class="btn btn-icon btn-success remove_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-file-text"></i></button>
+                                                    </center>
                                                 </div>
                                             </td>
 
@@ -141,19 +147,19 @@ include 'db-config.php';
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_FirstName" placeholder="First Name" require>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_MiddleName" placeholder="Middle Name" require>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_LastName" placeholder="Last Name" require>
                                 </div>
                             </div>
                         </div>
@@ -178,13 +184,13 @@ include 'db-config.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Fld_Address">Address</label>
-                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" require>
+                                    <input class="form-control form-control-uppercase" type="text" name="Fld_Address" placeholder="Address" require>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" require>
+                                    <input class="form-control form-control-uppercase" type="text" name="Fld_ContactNumber" placeholder="Contact Number" require>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +199,7 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_EmployeeID" placeholder="Employee ID" require>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -205,7 +211,7 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Position">Position</label>
-                                    <select class="form-control select2" name="Fld_Position">
+                                    <select class="form-control" name="Fld_Position">
                                         <?php
                                         include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_position");
