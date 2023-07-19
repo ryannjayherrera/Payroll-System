@@ -134,15 +134,17 @@ include 'db-config.php';
     <!-- Add Employee -->
     <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="new_emp_btn">Update Employee List</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Put employee record here -->
 
-                    <form class="forms-sample" method="POST">
+            <form class="forms-sample" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="new_emp_btn">Update Employee List</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Put employee record here -->
+
+
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -213,7 +215,7 @@ include 'db-config.php';
                                     <label for="Fld_Position">Position</label>
                                     <select class="form-control" name="Fld_Position">
                                         <?php
-                                      
+
                                         $users = $conn->query("SELECT * FROM tbl_position");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
@@ -226,10 +228,10 @@ include 'db-config.php';
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control select2" id="status">
+                                    <label for="Fld_Status">Status</label>
+                                    <select class="form-control select2" name="Fld_Status">
                                         <?php
-                                     
+
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
@@ -243,19 +245,21 @@ include 'db-config.php';
                         </div>
 
                         <div class="form-group">
-                            <label for="jobdesc">Job Description</label>
-                            <textarea class="form-control html-editor" rows="10" id="jobdesc"></textarea>
+                            <label for="Fld_JobDesc">Job Description</label>
+                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"></textarea>
                         </div>
 
-                    </form>
 
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="addEmployee">Save changes</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="addEmployee">Save changes</button>
-                </div>
-            </div>
+            </form>
         </div>
+
     </div>
 
 

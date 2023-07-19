@@ -107,7 +107,7 @@ if (isset($_POST['addEmployee'])) {
 	mysqli_close($conn);
 }
 
-if (count($_POST) > 0) {
+/* if (count($_POST) > 0) {
 	if ($_POST['type'] == 2) {
 		$Fld_RecID = $_POST['Fld_RecID'];
 		$Fld_Status = $_POST['Fld_Status'];
@@ -121,7 +121,7 @@ if (count($_POST) > 0) {
 		mysqli_close($conn);
 		echo '<script>showAlert();</script>';
 	}
-}
+} */
 ?>
 <script>
 	function showAlert() {
