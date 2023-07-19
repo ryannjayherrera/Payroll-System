@@ -17,7 +17,7 @@ if (isset($_POST['add_user'])) {
 
 	$result = mysqli_query($db, $select);
 
-	if (mysqli_num_rows($result) > 0) {
+	if (mysqli_num_rows($result) > 0) {	
 
 		$error[] = 'user already exist!';
 	} else {
@@ -75,13 +75,15 @@ if (isset($_POST['login'])) {
 			$_SESSION['Fld_Fld_Email'] = $row['Fld_Fld_Email'];
 			header('location:index.php');
 		} elseif ($row['Fld_Role'] == 'user') {
-			$_SESSION['Fld_Fld_Emaile'] = $row['Fld_Fld_Email'];
+			$_SESSION['Fld_Fld_Email'] = $row['Fld_Fld_Email'];
 			header('location:register.php');
 		}
 	} else {
 		$error[] = 'incorrect email or password!';
 	}
 }
+
+
 
 if (isset($_POST['addEmployee'])) {
 	$Fld_EmployeeID = $_POST['Fld_EmployeeID'];
@@ -100,6 +102,7 @@ if (isset($_POST['addEmployee'])) {
      VALUES ('$Fld_EmployeeID', '$Fld_FirstName', '$Fld_MiddleName', '$Fld_LastName', '$Fld_Gender', '$Fld_Birthday', '$Fld_Address', '$Fld_ContactNumber','$Fld_DateHired', '$Fld_Position', '$Fld_JobDesc', '$Fld_Status')";
 
 	if (mysqli_query($conn, $sql)) {
+
 		$_SESSION['success'] = 'Employee updated successfully';
 	} else {
 		echo "Error: " . $sql . "" . mysqli_error($conn);
@@ -107,21 +110,21 @@ if (isset($_POST['addEmployee'])) {
 	mysqli_close($conn);
 }
 
-
-if (isset($_POST['UpdateStatusEmployee'])) {
-	$Fld_RecID = $_POST['Fld_RecID'];
-	$Fld_Status = $_POST['Fld_Status'];
-	$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID='$Fld_RecID'";
-	if (mysqli_query($conn, $sql)) {
-		$_SESSION['success'] = 'Employee updated successfully';
-	} else {
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		$_SESSION['error'] = 'Select employee to edit first';
+if (count($_POST) > 0) {
+	if ($_POST['type'] == 2) {
+		$Fld_RecID = $_POST['Fld_RecID'];
+		$Fld_Status = $_POST['Fld_Status'];
+		$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
+		if (mysqli_query($conn, $sql)) {
+			$_SESSION['success'] = 'Employee updated successfully';
+		} else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			$_SESSION['error'] = 'Select employee to edit first';
+		}
+		mysqli_close($conn);
+		echo '<script>showAlert();</script>';
 	}
-	mysqli_close($conn);
-	echo '<script>showAlert();</script>';
 }
-
 ?>
 <script>
 	function showAlert() {
