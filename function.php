@@ -83,8 +83,6 @@ if (isset($_POST['login'])) {
 	}
 }
 
-
-
 if (isset($_POST['addEmployee'])) {
 	$Fld_EmployeeID = $_POST['Fld_EmployeeID'];
 	$Fld_FirstName = $_POST['Fld_FirstName'];
@@ -102,7 +100,6 @@ if (isset($_POST['addEmployee'])) {
      VALUES ('$Fld_EmployeeID', '$Fld_FirstName', '$Fld_MiddleName', '$Fld_LastName', '$Fld_Gender', '$Fld_Birthday', '$Fld_Address', '$Fld_ContactNumber','$Fld_DateHired', '$Fld_Position', '$Fld_JobDesc', '$Fld_Status')";
 
 	if (mysqli_query($conn, $sql)) {
-
 		$_SESSION['success'] = 'Employee updated successfully';
 	} else {
 		echo "Error: " . $sql . "" . mysqli_error($conn);
