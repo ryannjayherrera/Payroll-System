@@ -1,6 +1,5 @@
 <?php
 require_once 'function.php';
-include 'db-config.php';
 ?>
 
 <!doctype html>
@@ -9,40 +8,30 @@ include 'db-config.php';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Employee | ePMS</title>
+    <title>Employeexxxx | ePMS</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
-
-
-    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="plugins/ionicons/dist/css/ionicons.min.css">
-    <link rel="stylesheet" href="plugins/icon-kit/dist/css/iconkit.min.css">
-    <link rel="stylesheet" href="plugins/perfect-scrollbar/css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="plugins/weather-icons/css/weather-icons.min.css">
-    <link rel="stylesheet" href="dist/css/theme.min.css">
-    <link rel="stylesheet" href="plugins/datedropper/datedropper.min.css">
-    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
-    <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
-    <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
-
+    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../plugins/weather-icons/css/weather-icons.min.css">
+    <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <link rel="stylesheet" href="../plugins/datedropper/datedropper.min.css">
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
+    <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-
-
-
 
     <div class="container-fluid">
         <div class="page-header">
@@ -94,7 +83,7 @@ include 'db-config.php';
                                 </thead>
                                 <tbody>
                                     <?php
-
+                                    include 'db-config.php';
                                     $users = $conn->query("SELECT * FROM tbl_employee");
                                     $i = 1;
                                     while ($row = $users->fetch_assoc()) :
@@ -106,16 +95,11 @@ include 'db-config.php';
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
-                                                    <!--   <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
+                                                    <!-- <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
                                                     <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
-                                                 -->
-
-                                                    <center>
-                                                        <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
-                                                        <button class="btn btn-icon btn-primary edit_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-edit-2"></i></button>
-                                                        <button class="btn btn-icon btn-success remove_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-file-text"></i></button>
-                                                    </center>
+                                                     --><button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-trash"></i> Delete</button>
+                          
                                                 </div>
                                             </td>
 
@@ -147,19 +131,19 @@ include 'db-config.php';
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_FirstName" placeholder="First Name" require>
+                                    <input type="text" class="form-control" name="Fld_FirstName" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_MiddleName" placeholder="Middle Name" require>
+                                    <input type="text" class="form-control" name="Fld_MiddleName" placeholder="Middle Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_LastName" placeholder="Last Name" require>
+                                    <input type="text" class="form-control" name="Fld_LastName" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -169,7 +153,7 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" require>
+                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" />
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -184,13 +168,13 @@ include 'db-config.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Fld_Address">Address</label>
-                                    <input class="form-control form-control-uppercase" type="text" name="Fld_Address" placeholder="Address" require>
+                                    <input class="form-control" type="text" name="Fld_Address" placeholder="Address" />
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control form-control-uppercase" type="text" name="Fld_ContactNumber" placeholder="Contact Number" require>
+                                    <input class="form-control" type="text" name="Fld_ContactNumber" placeholder="Contact Number" />
                                 </div>
                             </div>
                         </div>
@@ -199,26 +183,26 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_EmployeeID" placeholder="Employee ID" require>
+                                    <input type="text" class="form-control" name="Fld_EmployeeID" placeholder="Employee ID">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired" require>
+                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Position">Position</label>
-                                    <select class="form-control" name="Fld_Position">
+                                    <select class="form-control select2" name="Fld_Position">
                                         <?php
-                                      
+                                        include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_position");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
                                         ?>
-                                            <option class="form-control form-control-uppercase"><?php echo $row['Fld_PositionName']; ?></option>
+                                            <option><?php echo $row['Fld_PositionName']; ?></option>
                                         <?php endwhile; ?>
 
                                     </select>
@@ -226,15 +210,15 @@ include 'db-config.php';
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control select2" id="status">
+                                    <label for="Fld_Status">Status</label>
+                                    <select class="form-control select2" name="Fld_Status">
                                         <?php
-                                     
+                                        include 'db-config.php';
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
                                         ?>
-                                            <option class="form-control form-control-uppercase"><?php echo $row['Fld_Status']; ?></option>
+                                            <option><?php echo $row['Fld_Status']; ?></option>
                                         <?php endwhile; ?>
 
                                     </select>
@@ -244,17 +228,18 @@ include 'db-config.php';
 
                         <div class="form-group">
                             <label for="jobdesc">Job Description</label>
-                            <textarea class="form-control html-editor" rows="10" id="jobdesc"></textarea>
+                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"></textarea>
                         </div>
-
-                    </form>
 
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" value="1" name="type">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name='addEmployee'>Save changes</button>
+                    <button type="submit" class="btn btn-primary" name='save'>Save changes</button>
                 </div>
+
             </div>
+            </form>
         </div>
     </div>
 
@@ -298,29 +283,38 @@ include 'db-config.php';
         </div>
     </div>
 
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+        window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')
     </script>
-    <script src="plugins/popper.js/dist/umd/popper.min.js"></script>
-    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-    <script src="plugins/screenfull/dist/screenfull.js"></script>
-    <script src="dist/js/theme.min.js"></script>
-    <script src="plugins/datedropper/datedropper.min.js"></script>
-    <script src="js/form-picker.js"></script>
-    <script src="plugins/select2/dist/js/select2.min.js"></script>
-    <script src="plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="../plugins/screenfull/dist/screenfull.js"></script>
+    <script src="../dist/js/theme.min.js"></script>
+    <script src="../plugins/datedropper/datedropper.min.js"></script>
+    <script src="../js/form-picker.js"></script>
+    <script src="../plugins/select2/dist/js/select2.min.js"></script>
+    <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
 
-    <script type="text/javascript">
+    <!--  <script type="text/javascript">
         $(document).ready(function() {
             $('#table').DataTable();
+        });
+    </script> -->
+    <script>
+        $(function() {
+            $('.edit').click(function(e) {
+                e.preventDefault();
+                $('#edit').modal('show');
+                var id = $(this).data('id');
+                getRow(id);
+            });
+
         });
     </script>
 
 
-    </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function(b, o, i, l, e, r) {
