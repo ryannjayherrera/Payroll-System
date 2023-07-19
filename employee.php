@@ -109,13 +109,12 @@ include 'db-config.php';
                                                     <!--   <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
                                                     <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
                                                     <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
-                                                 -->
+                                                    -->
 
-                                                    <center>
-                                                        <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
-                                                        <button class="btn btn-icon btn-primary edit_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-edit-2"></i></button>
-                                                        <button class="btn btn-icon btn-success remove_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-file-text"></i></button>
-                                                    </center>
+                                                    <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
+                                                    <button class="btn btn-icon btn-primary edit_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-edit-2"></i></button>
+                                                    <button class="btn btn-icon btn-success" data-target="#statusEmployeeModal" data-toggle="modal" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-file-text"></i></button>
+
                                                 </div>
                                             </td>
 
@@ -264,10 +263,10 @@ include 'db-config.php';
 
 
     <!-- Change Status Modal HTML -->
-    <div id="statusEmployeeModal" class="modal fade">
+    <div id="statusEmployeeModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="update_form" method="POST">
+                <form id="statusEmployeeModal" method="POST">
                     <div class="modal-header">
                         <h4 class="modal-title">Update Employee Status</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -279,7 +278,6 @@ include 'db-config.php';
                                 <label for="Fld_Status">Employee Status</label>
                                 <select class="form-control" name="Fld_Status">
                                     <?php
-                                    include 'db-config.php';
                                     $users = $conn->query("SELECT * FROM tbl_emp_status");
                                     $i = 1;
                                     while ($row = $users->fetch_assoc()) :
@@ -295,7 +293,7 @@ include 'db-config.php';
                     <div class="modal-footer">
                         <input type="hidden" value="2" name="type">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button type="button" class="btn btn-info" id="update">Update</button>
+                        <button type="submit" class="btn btn-info" name="UpdateStatusEmployee">Update</button>
                     </div>
                 </form>
             </div>

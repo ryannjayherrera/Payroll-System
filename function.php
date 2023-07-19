@@ -107,21 +107,21 @@ if (isset($_POST['addEmployee'])) {
 	mysqli_close($conn);
 }
 
-/* if (count($_POST) > 0) {
-	if ($_POST['type'] == 2) {
-		$Fld_RecID = $_POST['Fld_RecID'];
-		$Fld_Status = $_POST['Fld_Status'];
-		$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
-		if (mysqli_query($conn, $sql)) {
-			$_SESSION['success'] = 'Employee updated successfully';
-		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-			$_SESSION['error'] = 'Select employee to edit first';
-		}
-		mysqli_close($conn);
-		echo '<script>showAlert();</script>';
+
+if (isset($_POST['UpdateStatusEmployee'])) {
+	$Fld_RecID = $_POST['Fld_RecID'];
+	$Fld_Status = $_POST['Fld_Status'];
+	$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID='$Fld_RecID'";
+	if (mysqli_query($conn, $sql)) {
+		$_SESSION['success'] = 'Employee updated successfully';
+	} else {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		$_SESSION['error'] = 'Select employee to edit first';
 	}
-} */
+	mysqli_close($conn);
+	echo '<script>showAlert();</script>';
+}
+
 ?>
 <script>
 	function showAlert() {
