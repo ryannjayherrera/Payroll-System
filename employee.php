@@ -1,7 +1,7 @@
 <?php
 require_once 'function.php';
 include 'db-config.php';
-  
+
 
 ?>
 
@@ -19,9 +19,6 @@ include 'db-config.php';
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-
-
-
     <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/ionicons/dist/css/ionicons.min.css">
@@ -33,6 +30,7 @@ include 'db-config.php';
     <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
+    <link rel="stylesheet" href="plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
@@ -73,65 +71,76 @@ include 'db-config.php';
         <!-- Put content here -->
 
         <!-- Pusadasda -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header d-block">
-                        <h3>Employee List</h3>
-                        <button class="btn btn-primary btn-sm btn-block col-md-1 float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
 
+        <div class="card">
+            <div class="card-header d-block">
+                <h3>Employee List</h3></br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search">
+                        </div>
                     </div>
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-sm btn-block float-center" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
 
-                    <div class="card-body">
-                        <div class="#">
-                            <table id="dt-responsive" class="table table-hover table-bordered nowrap data_table"> <!-- table-hover table-striped table-bordered nowrap -->
-                                <thead>
-                                    <tr>
-                                        <th>Employee ID</th>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Status</th>
-                                        <th class="nosort">&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-
-                                    $query = mysqli_query($conn, "SELECT * FROM tbl_employee");
-
-                                    while ($row = mysqli_fetch_array($query)) {
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $row['Fld_EmployeeID']; ?> </td>
-                                            <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?>. <?php echo $row['Fld_LastName']; ?></td>
-                                            <td><?php echo $row['Fld_Position']; ?></td>
-                                            <td><?php echo $row['Fld_Status']; ?></td>
-                                            <td>
-                                                <div class="table-actions" style="text-align: center;">
-                                                    <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
-                                                    <button class="btn btn-icon btn-primary" data-toggle="modal" data-target="#empedit_modal<?php echo $row['Fld_RecID'] ?>"><i class="ik ik-edit-2"></i></button>
-                                                    <button class="btn btn-icon btn-success" data-toggle="modal" data-target="#empstatusupdate_modal<?php echo $row['Fld_RecID'] ?>"><i class="ik ik-file-text"></i></button>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                    <?php
-                                        include "modal/emp-edit.php";
-                                        include 'modal/emp-status-update.php';                                           
-                                    }
-                                   
-                                    ?>
-
-
-
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="card-body">
+                <div class="dt-responsive">
+                    <table id="alt-pg-dt" class="table table-bordered table-striped table-hover nowrap">
+                        <thead>
+
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Status</th>
+                            <th class="nosort">&nbsp;</th>
+
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            $query = mysqli_query($conn, "SELECT * FROM tbl_employee");
+
+                            while ($row = mysqli_fetch_array($query)) {
+
+                            ?>
+                                <tr>
+                                    <td><?php echo $row['Fld_EmployeeID']; ?> </td>
+                                    <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?>. <?php echo $row['Fld_LastName']; ?></td>
+                                    <td><?php echo $row['Fld_Position']; ?></td>
+                                    <td><?php echo $row['Fld_Status']; ?></td>
+                                    <td>
+                                        <div class="table-actions" style="text-align: center;">
+                                            <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
+                                            <button class="btn btn-icon btn-primary" data-toggle="modal" data-target="#empedit_modal<?php echo $row['Fld_RecID'] ?>"><i class="ik ik-edit-2"></i></button>
+                                            <!--   <button class="btn btn-icon btn-success" data-toggle="modal" data-target="#empstatusupdate_modal<?php echo $row['Fld_RecID'] ?>"><i class="ik ik-file-text"></i></button> -->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            <?php
+                                /* include 'modal/emp-status-update.php'; */
+                                include "modal/emp-edit.php";
+                            }
+
+                            ?>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
 
     </div>
 
@@ -142,7 +151,7 @@ include 'db-config.php';
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="new_emp_btn">Add Employee</h5>
-                       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                     </div>
                     <div class="modal-body">
                         <!-- Put employee record here -->
@@ -255,7 +264,7 @@ include 'db-config.php';
         </div>
 
     </div>
-  
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
@@ -269,14 +278,22 @@ include 'db-config.php';
     <script src="js/form-picker.js"></script>
     <script src="plugins/select2/dist/js/select2.min.js"></script>
     <script src="plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 
-    <script type="text/javascript">
+
+    <script>
+        // Search functionality
         $(document).ready(function() {
-            $('#table').DataTable();
+            $("#searchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         });
-    </script>
-
-
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

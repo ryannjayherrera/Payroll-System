@@ -105,7 +105,7 @@ if (isset($_POST['addEmployee'])) {
 		echo "Error: " . $sql . "" . mysqli_error($conn);
 	}
 	mysqli_close($conn);
-	header("location: index.php?page=employee");
+	//header("location: index.php?page=employee");
 }
 
 /* Update Employee */
