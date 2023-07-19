@@ -82,7 +82,7 @@ if (isset($_POST['login'])) {
 		$error[] = 'incorrect email or password!';
 	}
 }
-
+/* Add employee */
 if (isset($_POST['addEmployee'])) {
 	$Fld_EmployeeID = $_POST['Fld_EmployeeID'];
 	$Fld_FirstName = $_POST['Fld_FirstName'];
@@ -105,13 +105,26 @@ if (isset($_POST['addEmployee'])) {
 		echo "Error: " . $sql . "" . mysqli_error($conn);
 	}
 	mysqli_close($conn);
+	header("location: index.php?page=employee");
 }
 
-
-if (isset($_POST['UpdateStatusEmployee'])) {
+/* Update Employee */
+if (isset($_POST['UpdateEmployee'])) {
 	$Fld_RecID = $_POST['Fld_RecID'];
+	$Fld_FirstName = $_POST['Fld_FirstName'];
+	$Fld_MiddleName = $_POST['Fld_MiddleName'];
+	$Fld_LastName = $_POST['Fld_LastName'];
+	$Fld_Gender = $_POST['Fld_Gender'];
+	$Fld_Birthday = $_POST['Fld_Birthday'];
+	$Fld_Address = $_POST['Fld_Address'];
+	$Fld_ContactNumber = $_POST['Fld_ContactNumber'];
+	$Fld_DateHired = $_POST['Fld_DateHired'];
+	$Fld_Position = $_POST['Fld_Position'];
+	$Fld_JobDesc = $_POST['Fld_JobDesc'];
 	$Fld_Status = $_POST['Fld_Status'];
-	$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID='$Fld_RecID'";
+	$Fld_EmployeeID = $_POST['Fld_EmployeeID'];
+	$sql = "UPDATE tbl_employee SET Fld_JobDesc = '$Fld_JobDesc', Fld_Position = '$Fld_Position', Fld_DateHired = '$Fld_DateHired', Fld_ContactNumber = '$Fld_ContactNumber', Fld_Address = '$Fld_Address', Fld_Birthday = '$Fld_Birthday', Fld_Gender = '$Fld_Gender', Fld_LastName = '$Fld_LastName', Fld_MiddleName = '$Fld_MiddleName', Fld_FirstName = '$Fld_FirstName', Fld_EmployeeID = '$Fld_EmployeeID', Fld_Status = '$Fld_Status' WHERE Fld_RecID='$Fld_RecID'";
+	
 	if (mysqli_query($conn, $sql)) {
 		$_SESSION['success'] = 'Employee updated successfully';
 	} else {
@@ -120,6 +133,24 @@ if (isset($_POST['UpdateStatusEmployee'])) {
 	}
 	mysqli_close($conn);
 	echo '<script>showAlert();</script>';
+	//header("location: index.php?page=employee");
+}
+
+/* Update Employee Status Only */
+if (isset($_POST['UpdateStatusEmployee'])) {
+	$Fld_RecID = $_POST['Fld_RecID'];
+	$Fld_Status = $_POST['Fld_Status'];
+	$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID='$Fld_RecID'";
+	
+	if (mysqli_query($conn, $sql)) {
+		$_SESSION['success'] = 'Employee updated successfully';
+	} else {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		$_SESSION['error'] = 'Select employee to edit first';
+	}
+	mysqli_close($conn);
+	echo '<script>showAlert();</script>';
+	header("location: index.php?page=employee");
 }
 
 ?>

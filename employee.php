@@ -1,6 +1,8 @@
 <?php
 require_once 'function.php';
 include 'db-config.php';
+  
+
 ?>
 
 <!doctype html>
@@ -95,9 +97,9 @@ include 'db-config.php';
                                 <tbody>
                                     <?php
 
-                                    $users = $conn->query("SELECT * FROM tbl_employee");
-                                    $i = 1;
-                                    while ($row = $users->fetch_assoc()) :
+                                    $query = mysqli_query($conn, "SELECT * FROM tbl_employee");
+
+                                    while ($row = mysqli_fetch_array($query)) {
                                     ?>
                                         <tr>
                                             <td><?php echo $row['Fld_EmployeeID']; ?> </td>
@@ -106,20 +108,23 @@ include 'db-config.php';
                                             <td><?php echo $row['Fld_Status']; ?></td>
                                             <td>
                                                 <div class="table-actions" style="text-align: center;">
-                                                    <!--   <a href="emp-file.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: blue;"><i class="ik ik-folder-minus"></i></a>
-                                                    <a href="edit.php?id=<?php echo $row['Fld_RecID']; ?>" style="color: green;"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#statusEmployeeModal" class="update" data-toggle="modal" style="color: orange;"><i class="ik ik-file-text update" data-toggle="tooltip" data-id="<?php echo $row["Fld_RecID"]; ?>" data-status="<?php echo $row["Fld_Status"]; ?> title=" Change Employee Status"></i> </a>
-                                                    -->
-
                                                     <button class="btn btn-icon btn-warning view_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-folder-minus"></i></button>
-                                                    <button class="btn btn-icon btn-primary edit_employee" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-edit-2"></i></button>
-                                                    <button class="btn btn-icon btn-success" data-target="#statusEmployeeModal" data-toggle="modal" data-id="<?php echo $row['Fld_RecID'] ?>" type="button"><i class="ik ik-file-text"></i></button>
+                                                    <button class="btn btn-icon btn-primary" data-toggle="modal" data-target="#empedit_modal<?php echo $row['Fld_RecID'] ?>"><i class="ik ik-edit-2"></i></button>
+                                                    <button class="btn btn-icon btn-success" data-toggle="modal" data-target="#empstatusupdate_modal<?php echo $row['Fld_RecID'] ?>"><i class="ik ik-file-text"></i></button>
 
                                                 </div>
                                             </td>
-
                                         </tr>
-                                    <?php endwhile; ?>
+
+                                    <?php
+                                        include "modal/emp-edit.php";
+                                        include 'modal/emp-status-update.php';                                           
+                                    }
+                                   
+                                    ?>
+
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -133,44 +138,39 @@ include 'db-config.php';
     <!-- Add Employee -->
     <div class="modal fade full-window-modal" id="new_emp_btn" tabindex="-1" role="dialog" aria-labelledby="new_emp_btn" aria-hidden="true">
         <div class="modal-dialog" role="document">
-
             <form class="forms-sample" method="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="new_emp_btn">Update Employee List</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h5 class="modal-title" id="new_emp_btn">Add Employee</h5>
+                       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                     </div>
                     <div class="modal-body">
                         <!-- Put employee record here -->
-
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_FirstName">First Name</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_FirstName" placeholder="First Name" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_FirstName" placeholder="First Name" required="required">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_MiddleName">Middel Name</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_MiddleName" placeholder="Middle Name" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_MiddleName" placeholder="Middle Name" required="required">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="Fld_LastName">Last Name</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_LastName" placeholder="Last Name" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_LastName" placeholder="Last Name" required="required">
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Birthday">Birth Date</label>
-                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" require>
+                                    <input id="dropper-animation" class="form-control" type="date" name="Fld_Birthday" placeholder="Birthday" required="required">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -185,34 +185,33 @@ include 'db-config.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Fld_Address">Address</label>
-                                    <input class="form-control form-control-uppercase" type="text" name="Fld_Address" placeholder="Address" require>
+                                    <input class="form-control form-control-uppercase" type="text" name="Fld_Address" placeholder="Address" required="required">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_ContactNumber">Contact Number</label>
-                                    <input class="form-control form-control-uppercase" type="text" name="Fld_ContactNumber" placeholder="Contact Number" require>
+                                    <input class="form-control form-control-uppercase" type="text" name="Fld_ContactNumber" placeholder="Contact Number" required="required">
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_EmployeeID">Employee ID</label>
-                                    <input type="text" class="form-control form-control-uppercase" name="Fld_EmployeeID" placeholder="Employee ID" require>
+                                    <input type="text" class="form-control form-control-uppercase" name="Fld_EmployeeID" placeholder="Employee ID" required="required">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_DateHired">Date Hired</label>
-                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired" require>
+                                    <input type="date" class="form-control" name="Fld_DateHired" placeholder="Date Hired" required="required">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Position">Position</label>
-                                    <select class="form-control" name="Fld_Position">
+                                    <select class="form-control" name="Fld_Position" required="required">
                                         <?php
 
                                         $users = $conn->query("SELECT * FROM tbl_position");
@@ -228,7 +227,7 @@ include 'db-config.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Status">Status</label>
-                                    <select class="form-control select2" name="Fld_Status">
+                                    <select class="form-control select2" name="Fld_Status" required="required">
                                         <?php
 
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
@@ -242,14 +241,10 @@ include 'db-config.php';
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="Fld_JobDesc">Job Description</label>
                             <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"></textarea>
                         </div>
-
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -260,47 +255,7 @@ include 'db-config.php';
         </div>
 
     </div>
-
-
-    <!-- Change Status Modal HTML -->
-    <div id="statusEmployeeModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="statusEmployeeModal" method="POST">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Update Employee Status</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="id_u" name="Fld_RecID" class="form-control" required>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="Fld_Status">Employee Status</label>
-                                <select class="form-control" name="Fld_Status">
-                                    <?php
-                                    $users = $conn->query("SELECT * FROM tbl_emp_status");
-                                    $i = 1;
-                                    while ($row = $users->fetch_assoc()) :
-                                    ?>
-                                        <option><?php echo $row['Fld_Status']; ?></option>
-                                    <?php endwhile; ?>
-
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" value="2" name="type">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button type="submit" class="btn btn-info" name="UpdateStatusEmployee">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
+  
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')

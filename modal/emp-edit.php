@@ -1,54 +1,35 @@
-<!-- Change Status Modal HTML -->
-<div class="modal fade" id="empstatusupdate_modal<?php echo $row['Fld_RecID']?>" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form method="POST" action="function.php">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Update Employee Status</h4>
-                        
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
 
-                    <div class="modal-body">
-                       
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="Fld_Status">Employee Status</label>
-                                <input type="hidden" name="Fld_RecID" value="<?php echo $row['Fld_RecID']?>"/>
-            
-                                <select class="form-control" name="Fld_Status" value="<?php echo $row['Fld_Status']?>">
-                                    <?php
-                                    $users = $conn->query("SELECT * FROM tbl_emp_status");
-                                    $i = 1;
-                                    while ($row = $users->fetch_assoc()) :
-                                    ?>
-                                        <option><?php echo $row['Fld_Status']; ?></option>
-                                    <?php endwhile; ?>
 
-                                </select>
-                            </div>
-                        </div>
+<!doctype html>
+<html class="no-js" lang="en">
 
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button name="UpdateStatusEmployee" class="btn btn-info"  >Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<head>
+ 
+    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="plugins/weather-icons/css/weather-icons.min.css">
+    <link rel="stylesheet" href="dist/css/theme.min.css">
+    <link rel="stylesheet" href="plugins/datedropper/datedropper.min.css">
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
+    <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
+
+</head>
 
 
      <!-- Add Employee -->
- <div class="modal fade full-window-modal" id="empupdate_modal<?php echo $row['Fld_RecID']?>" aria-hidden="true">
+     <div class="modal fade full-window-modal" id="empedit_modal<?php echo $row['Fld_RecID']?>" aria-hidden="true">
         <div class="modal-dialog">
             <form class="function.php" method="POST">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Employee Record</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
+                   <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                     </div>
                     <div class="modal-body">
                         <!-- Put employee record here -->
                         <div class="row">
@@ -118,14 +99,14 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Position">Position</label>
-                                    <select class="form-control" name="Fld_Position" required="required">
+                                    <select class="form-control" name="Fld_Position" value="<?php echo $row['Fld_Position']?>" required="required">
                                         <?php
 
                                         $users = $conn->query("SELECT * FROM tbl_position");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
                                         ?>
-                                            <option class="form-control form-control-uppercase"></option>
+                                            <option class="form-control form-control-uppercase"><?php echo $row['Fld_PositionName']; ?></option>
                                         <?php endwhile; ?>
 
                                     </select>
@@ -134,14 +115,14 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Fld_Status">Status</label>
-                                    <select class="form-control select2" name="Fld_Status" required="required">
+                                    <select class="form-control" name="Fld_Status" value="<?php echo $row['Fld_Status']?>" required="required">
                                         <?php
 
                                         $users = $conn->query("SELECT * FROM tbl_emp_status");
                                         $i = 1;
                                         while ($row = $users->fetch_assoc()) :
                                         ?>
-                                            <option class="form-control form-control-uppercase"></option>
+                                            <option class="form-control form-control-uppercase"><?php echo $row['Fld_Status']; ?></option>
                                         <?php endwhile; ?>
 
                                     </select>
@@ -150,7 +131,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Fld_JobDesc">Job Description</label>
-                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc"value="<?php echo $row['Fld_JobDesc']?>" ></textarea>
+                            <textarea class="form-control html-editor" rows="10" name="Fld_JobDesc" value="<?php echo $row['Fld_JobDesc']?>" ></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -162,3 +143,18 @@
         </div>
 
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+    </script>
+    <script src="plugins/popper.js/dist/umd/popper.min.js"></script>
+    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="plugins/screenfull/dist/screenfull.js"></script>
+    <script src="dist/js/theme.min.js"></script>
+    <script src="plugins/datedropper/datedropper.min.js"></script>
+    <script src="js/form-picker.js"></script>
+    <script src="plugins/select2/dist/js/select2.min.js"></script>
+    <script src="plugins/summernote/dist/summernote-bs4.min.js"></script>
