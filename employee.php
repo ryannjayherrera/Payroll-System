@@ -8,6 +8,25 @@ include 'db-config.php';
 <!doctype html>
 <html class="no-js" lang="en">
 
+<style>
+    .name-column {
+        max-width: 100px;
+        /* Adjust the maximum width as needed */
+        white-space: nowrap;
+        /* Prevent text wrapping */
+        overflow: hidden;
+        /* Hide any overflowed content */
+        text-overflow: ellipsis;
+        /* Display ellipsis (...) for overflowed content */
+    }
+
+    .hide-column {
+        display: none;
+    }
+</style>
+
+
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -32,6 +51,11 @@ include 'db-config.php';
     <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
     <link rel="stylesheet" href="plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add DataTables CSS link -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
 
 </head>
 
@@ -74,27 +98,24 @@ include 'db-config.php';
 
         <div class="card">
             <div class="card-header d-block">
-                <h3>Employee List</h3></br>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="searchInput" placeholder="Search">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-sm btn-block float-center" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
 
-                        </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3>Employee List</h3></br>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-sm btn-block float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
+
                     </div>
                 </div>
+
+
             </div>
 
             <div class="card-body">
-                <div class="dt-responsive">
-                    <table id="alt-pg-dt" class="table table-bordered table-striped table-hover nowrap">
+                <div class="#">
+                    <table id="employeeTable" class="table ttable-striped table-bordered table-hover nowrap">
                         <thead>
 
                             <th>Employee ID</th>
@@ -113,6 +134,7 @@ include 'db-config.php';
 
                             ?>
                                 <tr>
+
                                     <td><?php echo $row['Fld_EmployeeID']; ?> </td>
                                     <td><?php echo $row['Fld_FirstName']; ?> <?php echo $row['Fld_MiddleName']; ?>. <?php echo $row['Fld_LastName']; ?></td>
                                     <td><?php echo $row['Fld_Position']; ?></td>
@@ -283,18 +305,20 @@ include 'db-config.php';
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add DataTables JS link -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 
     <script>
-        // Search functionality
+        // Initialize DataTables
         $(document).ready(function() {
-            $("#searchInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("table tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
+            $('#employeeTable').DataTable();
         });
     </script>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function(b, o, i, l, e, r) {
