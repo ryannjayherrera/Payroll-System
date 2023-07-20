@@ -103,7 +103,6 @@ include 'db-config.php';
                     <div class="col-md-10">
                         <h3>Employee List</h3></br>
                     </div>
-
                     <div class="col-md-2">
                         <button class="btn btn-primary btn-sm btn-block float-right" data-toggle="modal" type="button" data-target="#new_emp_btn"><span class="ik ik-user-plus"></span> Add Employee</button>
 
