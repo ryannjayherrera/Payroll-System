@@ -75,7 +75,7 @@ if (isset($_POST['login'])) {
 			$_SESSION['Fld_Fld_Email'] = $row['Fld_Fld_Email'];
 			header('location:index.php');
 		} elseif ($row['Fld_Role'] == 'user') {
-			$_SESSION['Fld_Fld_Email'] = $row['Fld_Fld_Email'];
+			$_SESSION['Fld_Fld_Email		'] = $row['Fld_Fld_Email'];
 			header('location:register.php');
 		}
 	} else {
@@ -109,12 +109,12 @@ if (isset($_POST['addEmployee'])) {
 	}
 	mysqli_close($conn);
 }
-
+		
 if (count($_POST) > 0) {
 	if ($_POST['type'] == 2) {
 		$Fld_RecID = $_POST['Fld_RecID'];
 		$Fld_Status = $_POST['Fld_Status'];
-		$sql = "UPDATE tbl_employee SET Fld_Status = '$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
+		$sql = "UPDATE tbl_employee SET		Fld_Status = '$Fld_Status' WHERE Fld_RecID=$Fld_RecID";
 		if (mysqli_query($conn, $sql)) {
 			$_SESSION['success'] = 'Employee updated successfully';
 		} else {
